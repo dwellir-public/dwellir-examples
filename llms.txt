@@ -1,0 +1,87 @@
+# Dwellir Examples
+
+> Curated code examples, demos, and AI agent skills for blockchain development.
+> Organization: dwellir-public (https://github.com/dwellir-public)
+> Website: https://www.dwellir.com
+> Last updated: 2026-03-17
+
+## How to use this file
+
+This file is an index of all public Dwellir example repositories. Each entry is a self-contained project you can clone and run. For structured data, see examples.json in this same repository.
+
+To get a Dwellir API key (required by most examples): https://www.dwellir.com
+
+---
+
+## Code Examples
+
+### gRPC Code Examples
+- Repo: https://github.com/dwellir-public/gRPC-code-examples
+- Chain: Multi-chain
+- Language: Python
+- Difficulty: Beginner
+- What it does: Connect to Dwellir's gRPC service and stream blockchain data. Getting-started examples for the gRPC API.
+
+### Hyperliquid Orderbook Server Examples
+- Repo: https://github.com/dwellir-public/hyperliquid-orderbook-server-code-examples
+- Chain: Hyperliquid
+- Language: Python
+- Difficulty: Beginner to Intermediate
+- What it does: Progressive WebSocket examples — from basic connections to L2/L4 orderbook data to calculating market metrics (VWAP, spreads, volume). Six examples that build on each other:
+  1. WebSocket basics — connect and subscribe to BTC trades
+  2. L2 orderbook — aggregated orderbook with spread visualization
+  3. Multiple subscriptions — handle multiple coins and data types
+  4. L4 orderbook — track individual orders
+  5. Reconnection handling — robust client with auto-reconnect
+  6. Data analysis — VWAP, spreads, volume calculations
+
+### Hyperliquid Builder Codes Demo
+- Repo: https://github.com/dwellir-public/hyperliquid-builder-codes-demo
+- Chain: Hyperliquid
+- Language: TypeScript (Next.js)
+- Difficulty: Intermediate
+- What it does: Interactive web app for Hyperliquid builder codes. Approve builder codes, trade with builder fees, and revoke. Wallet-connected frontend.
+
+### x402 Payment Protocol Demo
+- Repo: https://github.com/dwellir-public/x402-demo
+- Chain: Base
+- Language: TypeScript
+- Difficulty: Beginner
+- What it does: Minimal demo of the x402 protocol — HTTP-native micropayments using USDC. A joke API that costs $0.001 per request. Server returns HTTP 402, client pays, request goes through. Three interaction modes: Express server, browser frontend (MetaMask/Rabby), and headless client for bots/agents.
+
+---
+
+## AI Agent Skills
+
+Skills are structured knowledge files that give AI coding agents deep context about blockchain APIs. Install with `npx skills add`.
+
+### Dwellir Skill (140+ chains)
+- Repo: https://github.com/dwellir-public/dwellir-skill
+- Install: npx skills add dwellir-public/dwellir-skill
+- Scope: 140+ blockchain networks
+- What it enables: EVM JSON-RPC, Substrate/Polkadot (@polkadot/api), non-EVM chains (Aptos, Sui, TON, TRON, Starknet), trace/debug APIs, WebSocket subscriptions, Hyperliquid gRPC streaming. Four sub-skills: dwellir (hub), evm, substrate, hyperliquid.
+
+### Hyperliquid Skills
+- Repo: https://github.com/dwellir-public/hyperliquid-skills
+- Install: npx skills add dwellir-public/hyperliquid-skills
+- Scope: Hyperliquid L1
+- What it enables: HyperEVM JSON-RPC, Info API proxy, gRPC streaming, Orderbook WebSocket, trading patterns, dedicated nodes.
+
+---
+
+## Developer Tools
+
+### Skills Benchmark
+- Repo: https://github.com/dwellir-public/skills-benchmark
+- Language: Shell
+- What it does: Sandboxed benchmark harness for measuring how infrastructure skills affect AI coding agent performance. Run controlled experiments comparing agent output with and without skills loaded.
+
+---
+
+## Common patterns across examples
+
+- All examples follow: clone → install → add API key → run
+- Python examples use pip + requirements.txt
+- TypeScript examples use npm/pnpm + package.json
+- API keys come from https://www.dwellir.com
+- Each repo has its own README with full setup instructions

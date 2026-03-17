@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "organization": "dwellir-public",
+  "organization_url": "https://github.com/dwellir-public",
+  "website": "https://www.dwellir.com",
+  "updated": "2026-03-17",
+  "categories": [
+    {
+      "id": "code-examples",
+      "name": "Code Examples",
+      "description": "Self-contained, runnable projects demonstrating Dwellir infrastructure APIs"
+    },
+    {
+      "id": "ai-agent-skills",
+      "name": "AI Agent Skills",
+      "description": "Structured knowledge files that give AI coding agents deep context about blockchain APIs"
+    },
+    {
+      "id": "developer-tools",
+      "name": "Developer Tools",
+      "description": "Utilities for testing, benchmarking, and building with Dwellir"
+    }
+  ],
+  "examples": [
+    {
+      "name": "gRPC Code Examples",
+      "repo": "gRPC-code-examples",
+      "url": "https://github.com/dwellir-public/gRPC-code-examples",
+      "category": "code-examples",
+      "description": "Collection of code examples to get started with the Dwellir gRPC service",
+      "chains": ["multi-chain"],
+      "features": ["gRPC", "streaming"],
+      "language": "Python",
+      "difficulty": "beginner",
+      "status": "active",
+      "created": "2025-09-24",
+      "updated": "2026-02-10"
+    },
+    {
+      "name": "Hyperliquid Orderbook Server Examples",
+      "repo": "hyperliquid-orderbook-server-code-examples",
+      "url": "https://github.com/dwellir-public/hyperliquid-orderbook-server-code-examples",
+      "category": "code-examples",
+      "description": "Educational examples for connecting to Hyperliquid orderbook data via WebSocket. Progressive difficulty from basic connections to market analytics.",
+      "chains": ["hyperliquid"],
+      "features": ["WebSocket", "orderbook", "L2-data", "L4-data", "market-metrics"],
+      "language": "Python",
+      "difficulty": "beginner-to-intermediate",
+      "status": "active",
+      "created": "2025-09-30",
+      "updated": "2026-02-27"
+    },
+    {
+      "name": "Hyperliquid Builder Codes Demo",
+      "repo": "hyperliquid-builder-codes-demo",
+      "url": "https://github.com/dwellir-public/hyperliquid-builder-codes-demo",
+      "category": "code-examples",
+      "description": "Interactive Next.js demo for Hyperliquid builder codes — approve, trade with builder fees, and revoke.",
+      "chains": ["hyperliquid"],
+      "features": ["builder-codes", "trading", "Next.js", "wallet-connect"],
+      "language": "TypeScript",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-02-24",
+      "updated": "2026-03-09"
+    },
+    {
+      "name": "x402 Payment Protocol Demo",
+      "repo": "x402-demo",
+      "url": "https://github.com/dwellir-public/x402-demo",
+      "category": "code-examples",
+      "description": "Minimal demo of the x402 protocol — HTTP-native payments using USDC on Base. Server returns HTTP 402, client pays, request goes through. No API keys, no subscriptions.",
+      "chains": ["base"],
+      "features": ["x402", "micropayments", "USDC", "HTTP-402"],
+      "language": "TypeScript",
+      "difficulty": "beginner",
+      "status": "active",
+      "created": "2026-02-13",
+      "updated": "2026-02-13"
+    },
+    {
+      "name": "Dwellir Skill",
+      "repo": "dwellir-skill",
+      "url": "https://github.com/dwellir-public/dwellir-skill",
+      "category": "ai-agent-skills",
+      "description": "AI agent skills for blockchain development — 140+ chains, Polkadot ecosystem, EVM networks, trace/debug APIs, powered by Dwellir.",
+      "chains": ["multi-chain", "ethereum", "polkadot", "hyperliquid"],
+      "features": ["EVM", "Substrate", "trace-APIs", "debug-APIs", "WebSocket"],
+      "language": null,
+      "difficulty": "beginner",
+      "status": "active",
+      "install": "npx skills add dwellir-public/dwellir-skill",
+      "created": "2026-02-17",
+      "updated": "2026-02-17"
+    },
+    {
+      "name": "Hyperliquid Skills",
+      "repo": "hyperliquid-skills",
+      "url": "https://github.com/dwellir-public/hyperliquid-skills",
+      "category": "ai-agent-skills",
+      "description": "Hyperliquid skill for AI agents — HyperEVM JSON-RPC, Info API, gRPC streaming, Orderbook WebSocket via Dwellir.",
+      "chains": ["hyperliquid"],
+      "features": ["HyperEVM", "JSON-RPC", "Info-API", "gRPC", "orderbook-WebSocket"],
+      "language": null,
+      "difficulty": "beginner",
+      "status": "active",
+      "install": "npx skills add dwellir-public/hyperliquid-skills",
+      "created": "2026-02-20",
+      "updated": "2026-03-04"
+    },
+    {
+      "name": "Skills Benchmark",
+      "repo": "skills-benchmark",
+      "url": "https://github.com/dwellir-public/skills-benchmark",
+      "category": "developer-tools",
+      "description": "Sandboxed benchmark harness for measuring how infrastructure skills affect AI coding agent performance.",
+      "chains": [],
+      "features": ["benchmarking", "AI-agents", "sandboxed"],
+      "language": "Shell",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-03-04",
+      "updated": "2026-03-04"
+    }
+  ]
+}
