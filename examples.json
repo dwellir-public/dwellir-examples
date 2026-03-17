@@ -80,6 +80,20 @@
       "updated": "2026-02-13"
     },
     {
+      "name": "Base Flashblocks Visualizer",
+      "repo": "example-base-flashblocks",
+      "url": "https://github.com/dwellir-public/example-base-flashblocks",
+      "category": "code-examples",
+      "description": "Side-by-side visualization comparing 200ms flashblock pre-confirmations vs 2-second standard block finality on Base, powered by Dwellir RPC.",
+      "chains": ["base"],
+      "features": ["flashblocks", "pre-confirmations", "JSON-RPC", "Next.js", "real-time"],
+      "language": "TypeScript",
+      "difficulty": "beginner",
+      "status": "active",
+      "created": "2026-03-17",
+      "updated": "2026-03-17"
+    },
+    {
       "name": "Dwellir Skill",
       "repo": "dwellir-skill",
       "url": "https://github.com/dwellir-public/dwellir-skill",

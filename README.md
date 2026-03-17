@@ -16,6 +16,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid Orderbook Examples](https://github.com/dwellir-public/hyperliquid-orderbook-server-code-examples) | Hyperliquid | WebSocket connections, L2/L4 orderbook data, market metrics | Python | Beginner &rarr; Intermediate |
 | [Hyperliquid Builder Codes Demo](https://github.com/dwellir-public/hyperliquid-builder-codes-demo) | Hyperliquid | Builder codes &mdash; approve, trade with fees, revoke | TypeScript | Intermediate |
 | [x402 Payment Protocol Demo](https://github.com/dwellir-public/x402-demo) | Base | HTTP-native micropayments with USDC, no API keys needed | TypeScript | Beginner |
+| [Base Flashblocks Visualizer](https://github.com/dwellir-public/example-base-flashblocks) | Base | Flashblock pre-confirmations vs standard block finality, live visualization | TypeScript | Beginner |
 
 ## AI Agent Skills
 
@@ -53,6 +54,7 @@ graph LR
         E2[hyperliquid-orderbook-<br/>server-code-examples]
         E3[hyperliquid-builder-<br/>codes-demo]
         E4[x402-demo]
+        E5[example-base-flashblocks]
     end
 
     subgraph AI Agent Skills
@@ -64,7 +66,7 @@ graph LR
         T1[skills-benchmark]
     end
 
-    CAT -->|links to| E1 & E2 & E3 & E4
+    CAT -->|links to| E1 & E2 & E3 & E4 & E5
     CAT -->|links to| S1 & S2
     CAT -->|links to| T1
 
@@ -73,6 +75,7 @@ graph LR
     style E2 fill:#16213e,stroke:#0f3460,color:#fff
     style E3 fill:#16213e,stroke:#0f3460,color:#fff
     style E4 fill:#16213e,stroke:#0f3460,color:#fff
+    style E5 fill:#16213e,stroke:#0f3460,color:#fff
     style S1 fill:#0f3460,stroke:#533483,color:#fff
     style S2 fill:#0f3460,stroke:#533483,color:#fff
     style T1 fill:#1a1a2e,stroke:#0f3460,color:#fff

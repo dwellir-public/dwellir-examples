@@ -49,6 +49,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Beginner
 - What it does: Minimal demo of the x402 protocol — HTTP-native micropayments using USDC. A joke API that costs $0.001 per request. Server returns HTTP 402, client pays, request goes through. Three interaction modes: Express server, browser frontend (MetaMask/Rabby), and headless client for bots/agents.
 
+### Base Flashblocks Visualizer
+- Repo: https://github.com/dwellir-public/example-base-flashblocks
+- Chain: Base
+- Language: TypeScript (Next.js)
+- Difficulty: Beginner
+- What it does: Side-by-side visualization comparing 200ms flashblock pre-confirmations vs 2-second standard block finality. Polls the same Dwellir endpoint with "pending" (flashblocks) and "latest" (standard) block tags. Shows real-time transaction counts, gas usage, and a speed multiplier. Includes a transaction race feature to track individual transactions through both detection methods. One React component, raw JSON-RPC, no external libraries.
+
 ---
 
 ## AI Agent Skills
