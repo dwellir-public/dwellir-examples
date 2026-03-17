@@ -67,8 +67,6 @@ graph LR
     CAT -->|links to| E1 & E2 & E3 & E4
     CAT -->|links to| S1 & S2
     CAT -->|links to| T1
-    S1 -.->|used by| E1 & E2 & E3
-    S2 -.->|used by| E2 & E3
 
     style CAT fill:#1a1a2e,stroke:#e94560,color:#fff
     style E1 fill:#16213e,stroke:#0f3460,color:#fff
