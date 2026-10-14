@@ -3,11 +3,11 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-03-17
+> Last updated: 2026-10-14
 
 ## How to use this file
 
-This file is an index of all public Dwellir example repositories. Each entry is a self-contained project you can clone and run. For structured data, see examples.json in this same repository.
+This file is an index of all public Dwellir example repositories. Each entry is a self-contained project you can clone and run. Some examples live as folders inside this repository under examples/. For structured data, see examples.json in this same repository.
 
 To get a Dwellir API key (required by most examples): https://www.dwellir.com
 
@@ -56,6 +56,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Beginner
 - What it does: Side-by-side visualization comparing 200ms flashblock pre-confirmations vs 2-second standard block finality. Polls the same Dwellir endpoint with "pending" (flashblocks) and "latest" (standard) block tags. Shows real-time transaction counts, gas usage, and a speed multiplier. Includes a transaction race feature to track individual transactions through both detection methods. One React component, raw JSON-RPC, no external libraries.
 
+### Robinhood Chain Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/robinhood-rust-trading-bot
+- Chain: Robinhood Chain mainnet (chain ID 4663)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: 54-line bot using ureq + serde_json. Every 2 seconds it calls eth_blockNumber and eth_call slot0() on the WETH/USDG 0.01% pool (0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca), converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover starting from $1,000. Read-only; never signs transactions. Endpoint comes from the DWELLIR_URL environment variable. Includes a timestamped video transcript (TRANSCRIPT.md).
+
 ---
 
 ## AI Agent Skills
@@ -89,6 +96,7 @@ Skills are structured knowledge files that give AI coding agents deep context ab
 
 - All examples follow: clone → install → add API key → run
 - Python examples use pip + requirements.txt
+- Rust examples use cargo (cargo run --release)
 - TypeScript examples use npm/pnpm + package.json
 - API keys come from https://www.dwellir.com
 - Each repo has its own README with full setup instructions
