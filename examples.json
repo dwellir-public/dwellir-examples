@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-03-17",
+  "updated": "2026-10-14",
   "categories": [
     {
       "id": "code-examples",
@@ -92,6 +92,21 @@
       "status": "active",
       "created": "2026-03-17",
       "updated": "2026-03-17"
+    },
+    {
+      "name": "Robinhood Chain Rust Trading Bot",
+      "repo": "dwellir-examples",
+      "path": "examples/robinhood-rust-trading-bot",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/robinhood-rust-trading-bot",
+      "category": "code-examples",
+      "description": "54-line Rust bot that reads the live WETH/USDG pool price on Robinhood Chain via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
+      "chains": ["robinhood"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
+      "language": "Rust",
+      "difficulty": "beginner",
+      "status": "active",
+      "created": "2026-10-14",
+      "updated": "2026-10-14"
     },
     {
       "name": "Dwellir Skill",

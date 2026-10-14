@@ -2,7 +2,7 @@
 
 Curated code examples, demos, and AI agent skills for building on blockchain infrastructure with [Dwellir](https://www.dwellir.com).
 
-> **Start here.** Each project is a self-contained, cloneable repo. Pick one, clone it, add your API key, and run.
+> **Start here.** Each project is a self-contained, cloneable repo (or a folder under [`examples/`](./examples)). Pick one, clone it, add your API key, and run.
 
 ---
 
@@ -17,6 +17,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid Builder Codes Demo](https://github.com/dwellir-public/hyperliquid-builder-codes-demo) | Hyperliquid | Builder codes &mdash; approve, trade with fees, revoke | TypeScript | Intermediate |
 | [x402 Payment Protocol Demo](https://github.com/dwellir-public/x402-demo) | Base | HTTP-native micropayments with USDC, no API keys needed | TypeScript | Beginner |
 | [Base Flashblocks Visualizer](https://github.com/dwellir-public/example-base-flashblocks) | Base | Flashblock pre-confirmations vs standard block finality, live visualization | TypeScript | Beginner |
+| [Robinhood Chain Rust Trading Bot](./examples/robinhood-rust-trading-bot) | Robinhood Chain | Read a live DEX pool price over JSON-RPC, paper-trade a moving-average crossover | Rust | Beginner |
 
 ## AI Agent Skills
 
@@ -55,6 +56,7 @@ graph LR
         E3[hyperliquid-builder-<br/>codes-demo]
         E4[x402-demo]
         E5[example-base-flashblocks]
+        E6[examples/robinhood-rust-<br/>trading-bot]
     end
 
     subgraph AI Agent Skills
@@ -67,6 +69,7 @@ graph LR
     end
 
     CAT -->|links to| E1 & E2 & E3 & E4 & E5
+    CAT -->|contains| E6
     CAT -->|links to| S1 & S2
     CAT -->|links to| T1
 
@@ -76,6 +79,7 @@ graph LR
     style E3 fill:#16213e,stroke:#0f3460,color:#fff
     style E4 fill:#16213e,stroke:#0f3460,color:#fff
     style E5 fill:#16213e,stroke:#0f3460,color:#fff
+    style E6 fill:#16213e,stroke:#0f3460,color:#fff
     style S1 fill:#0f3460,stroke:#533483,color:#fff
     style S2 fill:#0f3460,stroke:#533483,color:#fff
     style T1 fill:#1a1a2e,stroke:#0f3460,color:#fff
