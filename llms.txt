@@ -63,6 +63,48 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Beginner
 - What it does: 54-line bot using ureq + serde_json. Every 2 seconds it calls eth_blockNumber and eth_call slot0() on the WETH/USDG 0.01% pool (0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca), converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover starting from $1,000. Read-only; never signs transactions. Endpoint comes from the DWELLIR_URL environment variable. Includes a timestamped video transcript (TRANSCRIPT.md).
 
+### Arbitrum Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/arbitrum-rust-trading-bot
+- Chain: Arbitrum mainnet (chain ID 42161)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the WETH/USDC 0.05% pool (0xc6962004f452be9203591991d15f6b388e09e8d0). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
+### Arc Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/arc-rust-trading-bot
+- Chain: Arc mainnet (chain ID 5042)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the WETH/USDC pool (0x6f302decb49fb30b2d2c609bdd16e04e7dd096fc). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
+### Base Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/base-rust-trading-bot
+- Chain: Base mainnet (chain ID 8453)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the WETH/USDC 0.01% pool (0xb4cb800910b228ed3d0834cf79d697127bbb00e5). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
+### BSC Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/bsc-rust-trading-bot
+- Chain: BSC mainnet (chain ID 56)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the USDT/WBNB 0.01% pool (0x172fcd41e0913e95784454622d1c3724f546f849). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
+### Hyperliquid EVM Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-rust-trading-bot
+- Chain: Hyperliquid EVM mainnet (chain ID 999)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the WHYPE/USDC 0.05% pool (0x6c9a33e3b592c0d65b3ba59355d5be0d38259285). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
+### Polygon Rust Trading Bot
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/polygon-rust-trading-bot
+- Chain: Polygon mainnet (chain ID 137)
+- Language: Rust
+- Difficulty: Beginner
+- What it does: Same 54-line bot as the Robinhood example (ureq + serde_json), pointed at the WPOL/USDC 0.05% pool (0xb6e57ed85c4c9dbfef2a68711e9d6f36c56e0fcb). Reads slot0() every 2 seconds, converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover from $1,000. Read-only. Endpoint from DWELLIR_URL. Includes TRANSCRIPT.md.
+
 ---
 
 ## AI Agent Skills
