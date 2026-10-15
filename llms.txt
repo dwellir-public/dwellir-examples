@@ -3,7 +3,7 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-10-14
+> Last updated: 2026-10-15
 
 ## How to use this file
 
@@ -62,6 +62,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Language: Rust
 - Difficulty: Beginner
 - What it does: 54-line bot using ureq + serde_json. Every 2 seconds it calls eth_blockNumber and eth_call slot0() on the WETH/USDG 0.01% pool (0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca), converts sqrtPriceX96 to a USD price, and paper-trades a 5-vs-20 moving-average crossover starting from $1,000. Read-only; never signs transactions. Endpoint comes from the DWELLIR_URL environment variable. Includes a timestamped video transcript (TRANSCRIPT.md).
+
+### Hyperliquid ABCI Snapshot to L4
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-abci-snapshot-to-l4
+- Chain: Hyperliquid mainnet
+- Language: Python
+- Difficulty: Intermediate
+- What it does: Reads a periodic_abci_states/<date>/<height>.rmp (or .rmp.lz4) snapshot with plain msgpack and writes every resting order on every perp, spot and outcome market as L4 JSON in the same [coin, [bids, asks]] shape as hl-node compute-l4-snapshots. Use it when hl-node fails on an older snapshot with "missing field ...", because Hyperliquid only publishes the latest hl-node and the state format changes at some upgrades. Includes compare_l4.py, which checks the output against an hl-node export; on block 1145900000 all 492,491 orders match. Needs about 20 GB RAM.
 
 ---
 
