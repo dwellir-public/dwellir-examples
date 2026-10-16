@@ -9,8 +9,11 @@ import json
 import sys
 from decimal import Decimal
 
-FIELDS = ["coin", "side", "limitPx", "sz", "oid", "timestamp", "origSz", "tif", "reduceOnly", "cloid"]
-NUMERIC = {"limitPx", "sz", "origSz"}
+FIELDS = [
+    "coin", "side", "limitPx", "sz", "oid", "timestamp", "triggerCondition", "isTrigger", "triggerPx",
+    "isPositionTpsl", "reduceOnly", "orderType", "origSz", "tif", "cloid",
+]
+NUMERIC = {"limitPx", "sz", "origSz", "triggerPx"}
 
 
 def same(field, a, b):
@@ -38,10 +41,18 @@ def main():
                 examples.append(f"{coin} side {side}: order sequence differs")
                 continue
             for x, y in zip(a, b):
-                for f in FIELDS:
-                    if not same(f, x[f], y[f]):
-                        field_errors += 1
-                        examples.append(f"{coin} oid {y['oid']} {f}: {x[f]!r} != {y[f]!r}")
+                # Check each order, then its TP/SL children in the same way.
+                pairs = [(x, y)]
+                if [c["oid"] for c in x["children"]] != [c["oid"] for c in y["children"]]:
+                    field_errors += 1
+                    examples.append(f"{coin} oid {y['oid']} children differ")
+                else:
+                    pairs += zip(x["children"], y["children"])
+                for p, q in pairs:
+                    for f in FIELDS:
+                        if not same(f, p[f], q[f]):
+                            field_errors += 1
+                            examples.append(f"{coin} oid {q['oid']} {f}: {p[f]!r} != {q[f]!r}")
 
     print(f"coins: {len(ours)} vs {len(ref)}, only in one file: {len(missing)}")
     print(f"orders: {orders}, sides with a different sequence: {sequence_errors}, field differences: {field_errors}")

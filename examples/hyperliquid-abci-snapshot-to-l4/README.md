@@ -44,12 +44,22 @@ The JSON file is a list of `[coin, [bids, asks]]`. Each side starts at the best 
 ```json
 ["BTC", [[
   {"coin": "BTC", "side": "B", "limitPx": "78711.0", "sz": "0.0123", "oid": 532430470001,
-   "timestamp": 1788221378120, "origSz": "0.0123", "tif": "Alo", "reduceOnly": false, "cloid": null},
+   "timestamp": 1788221378120, "triggerCondition": "N/A", "isTrigger": false, "triggerPx": "0.0",
+   "children": [
+     {"coin": "BTC", "side": "A", "limitPx": "71000.0", "sz": "0.0123", "oid": 532430470002,
+      "timestamp": 1788221378120, "triggerCondition": "Price below 77000", "isTrigger": true,
+      "triggerPx": "77000.0", "children": [], "isPositionTpsl": false, "reduceOnly": true,
+      "orderType": "Stop Market", "origSz": "0.0123", "tif": null, "cloid": null}
+   ],
+   "isPositionTpsl": false, "reduceOnly": false, "orderType": "Limit", "origSz": "0.0123",
+   "tif": "Gtc", "cloid": null},
   ...
 ], [ ... asks ... ]]]
 ```
 
-(The order above shows the format. It is not a real order.)
+(The orders above show the format. They are not real orders.)
+
+`children` holds the TP/SL orders that were placed with the resting order and that wait for it to fill. They are not on the book.
 
 ## How it works
 
@@ -61,6 +71,7 @@ The JSON file is a list of `[coin, [bids, asks]]`. Each side starts at the best 
 | Price levels | `book.halfs[0]` (bids), `book.halfs[1]` (asks) | Levels, best price first. Bid prices are stored as negative numbers |
 | Orders | `book.bod.e[k].o` | One resting order. Slots shaped `{"v": ...}` are empty |
 | Time priority | level `f`, then order `n` | Start at the level's first slot `f` and follow each order's `n` |
+| TP/SL children | `book.user_states[k][1].u` | Waiting trigger orders as `[oid, order]`, found by the ids in the parent's `c.R.c` |
 
 Order fields:
 
@@ -75,9 +86,24 @@ Order fields:
 | `t` | `tif` | For example `Gtc` or `Alo` |
 | `c.r` | `reduceOnly` | |
 | `c.c` | `cloid` | Client order id |
+| `c.d` | `orderType` | Missing: `Limit`. `S`: `Stop Market`, `s`: `Stop Limit`, `T`: `Take Profit Market`, `t`: `Take Profit Limit` |
+| `c.d` | `triggerCondition` | `N/A` without `c.d`. `Triggered` with it, because a trigger order on the book has already fired |
+| `i` | `isPositionTpsl` | |
+| | `isTrigger`, `triggerPx` | Always `false` and `"0.0"` for orders on the book |
+| `c.R.c` | `children` | Child TP/SL order ids, see below |
 | `u` | `user` | Only with `--users` |
-| `c.R` | | Child TP/SL order ids. Not included in the output |
 | `c.b` | | Builder address and fee. Not included in the output |
+
+Child order fields (from `user_states`):
+
+| Raw key | L4 field | Notes |
+|---------|----------|-------|
+| `c.S` | `sz`, `origSz` | Missing means the TP/SL closes the whole position: size `0.0` and `isPositionTpsl` true |
+| `c.l` | `limitPx` | Scaled as for book orders |
+| `t.p` | `triggerPx` | Scaled like `limitPx` |
+| `t.t` | `triggerCondition` | `sl` or `tp`. A sell stop loss or a buy take profit gives `Price below <px>`. The other two give `Price above <px>` |
+| `c.d` | `orderType` | Same codes as above |
+| | `isTrigger`, `tif`, `children` | Always `true`, `null` and `[]` |
 
 Spot book 0 is `PURR/USDC`. Other spot books are `@<index>`, or `#<outcome * 10 + side>` for outcome tokens.
 
@@ -90,7 +116,7 @@ coins: 1282 vs 1282, only in one file: 0
 orders: 492491, sides with a different sequence: 0, field differences: 0
 ```
 
-Every coin name, every order, its place in the book, and all fields in the table above match.
+Every coin name, every order, its place in the book, and every field match. This includes the 7,554 child TP/SL orders of 5,620 parents.
 
 For snapshots that the current `hl-node` cannot read, there is no reference export to compare against. For those, the script's output can be checked against the totals that the snapshot stores for each price level (order count and total size). On the 1 September 2026 snapshot (block 1131000000), all 339,922 levels match their stored totals.
 
@@ -104,9 +130,8 @@ python compare_l4.py ours.json reference.json
 
 ## Limits
 
-- The output has the core order fields only. It does not include `children`, `isTrigger`, `triggerPx`, `triggerCondition`, `orderType` or `isPositionTpsl`.
 - The raw key names are internal to Hyperliquid and are not documented. A future upgrade can rename them. If the script fails on a new snapshot, print the keys of one book and update the paths.
-- Untriggered stop and take-profit orders are not on the book, so they are not in the output.
+- Untriggered stop and take-profit orders are not on the book. The output includes them only as `children` of a resting parent order, which is what `hl-node` does too.
 
 ## Get the data
 
