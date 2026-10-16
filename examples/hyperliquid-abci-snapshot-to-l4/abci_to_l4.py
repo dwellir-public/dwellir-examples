@@ -81,7 +81,60 @@ def markets(exchange):
         yield coin, book, szd, SPOT_MAX_DECIMALS - szd
 
 
-def side_orders(coin, half, slots, szd, pxd, with_users):
+# Raw `c.d` -> hl-node orderType. Upper case is a market trigger, lower case a limit trigger.
+ORDER_TYPES = {
+    None: "Limit",
+    "S": "Stop Market",
+    "s": "Stop Limit",
+    "T": "Take Profit Market",
+    "t": "Take Profit Limit",
+}
+
+
+def untriggered(book):
+    """Map oid -> (raw order, user) for the book's waiting TP/SL orders."""
+    out = {}
+    for user, state in book.get("user_states", []):
+        for oid, o in state.get("u", []):
+            out[oid] = (o, user)
+    return out
+
+
+def trigger_condition(side, kind, px):
+    # A stop loss that sells (or a take profit that buys) fires when the price falls.
+    below = (side == "A") == (kind == "sl")
+    return f"Price {'below' if below else 'above'} {px[:-2] if px.endswith('.0') else px}"
+
+
+def child_order(coin, oid, raw, user, szd, pxd, with_users):
+    c, t = raw["c"], raw["t"]
+    trigger_px = fmt(t["p"], pxd)
+    # No size means the TP/SL closes the whole position. hl-node prints its size as 0.
+    size = fmt(c.get("S", 0), szd)
+    order = {
+        "coin": coin,
+        "side": c["s"],
+        "limitPx": fmt(c["l"], pxd),
+        "sz": size,
+        "oid": oid,
+        "timestamp": c["t"],
+        "triggerCondition": trigger_condition(c["s"], t["t"], trigger_px),
+        "isTrigger": True,
+        "triggerPx": trigger_px,
+        "children": [],
+        "isPositionTpsl": "S" not in c,
+        "reduceOnly": bool(c.get("r", False)),
+        "orderType": ORDER_TYPES[c.get("d")],
+        "origSz": size,
+        "tif": None,
+        "cloid": c.get("c"),
+    }
+    if with_users:
+        order["user"] = user
+    return order
+
+
+def side_orders(coin, half, slots, waiting, szd, pxd, with_users):
     """Walk each price level's linked list (f -> n -> n ...) in book order."""
     out = []
     for _, level in half["levels"]:
@@ -89,6 +142,11 @@ def side_orders(coin, half, slots, szd, pxd, with_users):
         while i is not None:
             o = slots[i]["o"]
             c = o["c"]
+            children = []
+            for child in c.get("R", {}).get("c", []):
+                if child in waiting:
+                    raw, user = waiting[child]
+                    children.append(child_order(coin, child, raw, user, szd, pxd, with_users))
             order = {
                 "coin": coin,
                 "side": c["s"],
@@ -96,9 +154,16 @@ def side_orders(coin, half, slots, szd, pxd, with_users):
                 "sz": fmt(o["r"], szd),
                 "oid": o["o"],
                 "timestamp": c["t"],
+                # A trigger order on the book has already fired.
+                "triggerCondition": "N/A" if c.get("d") is None else "Triggered",
+                "isTrigger": False,
+                "triggerPx": "0.0",
+                "children": children,
+                "isPositionTpsl": bool(o.get("i", False)),
+                "reduceOnly": bool(c.get("r", False)),
+                "orderType": ORDER_TYPES[c.get("d")],
                 "origSz": fmt(o.get("O", 0), szd),
                 "tif": o.get("t"),
-                "reduceOnly": bool(c.get("r", False)),
                 "cloid": c.get("c"),
             }
             if with_users:
@@ -112,7 +177,8 @@ def extract(state, with_users=False):
     books = []
     for coin, book, szd, pxd in markets(state["exchange"]):
         slots = book["bod"]["e"]
-        bids, asks = (side_orders(coin, h, slots, szd, pxd, with_users) for h in book["halfs"])
+        waiting = untriggered(book)
+        bids, asks = (side_orders(coin, h, slots, waiting, szd, pxd, with_users) for h in book["halfs"])
         books.append([coin, [bids, asks]])
     books.sort(key=lambda b: b[0])
     return books

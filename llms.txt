@@ -68,7 +68,7 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Chain: Hyperliquid mainnet
 - Language: Python
 - Difficulty: Intermediate
-- What it does: Reads a periodic_abci_states/<date>/<height>.rmp (or .rmp.lz4) snapshot with plain msgpack and writes every resting order on every perp, spot and outcome market as L4 JSON in the same [coin, [bids, asks]] shape as hl-node compute-l4-snapshots. Use it when hl-node fails on an older snapshot with "missing field ...", because Hyperliquid only publishes the latest hl-node and the state format changes at some upgrades. Includes compare_l4.py, which checks the output against an hl-node export; on block 1145900000 all 492,491 orders match. Needs about 20 GB RAM.
+- What it does: Reads a periodic_abci_states/<date>/<height>.rmp (or .rmp.lz4) snapshot with plain msgpack and writes every resting order on every perp, spot and outcome market as L4 JSON in the same [coin, [bids, asks]] shape as hl-node compute-l4-snapshots, with every hl-node field including the TP/SL children and trigger fields. Use it when hl-node fails on an older snapshot with "missing field ...", because Hyperliquid only publishes the latest hl-node and the state format changes at some upgrades. Includes compare_l4.py, which checks the output against an hl-node export; on block 1145900000 all 492,491 orders and 7,554 child orders match. Needs about 20 GB RAM.
 
 ---
 
