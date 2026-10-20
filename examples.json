@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "categories": [
     {
       "id": "code-examples",
@@ -197,6 +197,21 @@
       "status": "active",
       "created": "2026-10-14",
       "updated": "2026-10-14"
+    },
+    {
+      "name": "Hyperliquid ABCI Snapshot to L4",
+      "repo": "dwellir-examples",
+      "path": "examples/hyperliquid-abci-snapshot-to-l4",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-abci-snapshot-to-l4",
+      "category": "code-examples",
+      "description": "Python script that reads a Hyperliquid periodic_abci_states snapshot with plain msgpack and writes the full L4 order book in the same format as hl-node compute-l4-snapshots. Works on snapshots the current hl-node cannot read. Verified order for order against hl-node on 492,491 orders.",
+      "chains": ["hyperliquid"],
+      "features": ["L4-data", "orderbook", "ABCI-snapshot", "msgpack", "historical-data"],
+      "language": "Python",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-10-15",
+      "updated": "2026-10-15"
     },
     {
       "name": "Dwellir Skill",

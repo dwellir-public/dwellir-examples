@@ -1,0 +1,5 @@
+*.rmp
+*.lz4
+*.json
+.venv/
+__pycache__/
