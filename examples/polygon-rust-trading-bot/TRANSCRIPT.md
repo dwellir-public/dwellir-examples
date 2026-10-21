@@ -15,11 +15,11 @@ Log in to the Dwellir dashboard and open Chains. Click search, and type Polygon.
 
 ## 0:50 Create the Rust project (cargo new)
 
-Open a terminal, and run cargo new polygon-bot. Change into the folder, and open it in your editor.
+Open a terminal, and run cargo new polygon-bot. cd into the folder, and open it in your editor.
 
 ## 1:01 Add dependencies: ureq and serde_json
 
-Open Cargo.toml. Under dependencies, add ureq, for HTTP calls, and serde_json, for JSON.
+Open Cargo.toml. Under dependencies, add ureq, for HTTP requests, and serde_json, for JSON parsing.
 
 ## 1:11 Paste the bot code into main.rs
 
@@ -31,7 +31,7 @@ Part one connects to Dwellir. POOL is the POL/USDC pool, and the rpc function se
 
 ## 1:30 Code part 2: read the WPOL/USDC price from the pool (slot0)
 
-The price function reads the pool directly, with one call to slot0. The price is stored as a square root, so we square it and adjust for decimals.
+The price function reads the pool directly, with one call to slot0. The price is stored as a fixed-point square root, so we square it and adjust for token decimals.
 
 ## 1:42 Code part 3: poll new blocks every 2 seconds
 
