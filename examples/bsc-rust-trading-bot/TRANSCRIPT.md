@@ -15,11 +15,11 @@ Log in to the Dwellir dashboard and open Chains. Click search, and type Binance.
 
 ## 0:50 Create the Rust project (cargo new)
 
-Open a terminal, and run cargo new bsc-bot. Change into the folder, and open it in your editor.
+Open a terminal, and run cargo new bsc-bot. cd into the folder, and open it in your editor.
 
 ## 1:01 Add dependencies: ureq and serde_json
 
-Open Cargo.toml. Under dependencies, add ureq, for HTTP calls, and serde_json, for JSON.
+Open Cargo.toml. Under dependencies, add ureq, for HTTP requests, and serde_json, for JSON parsing.
 
 ## 1:11 Paste the bot code into main.rs
 
