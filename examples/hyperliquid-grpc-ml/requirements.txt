@@ -1,0 +1,5 @@
+grpcio>=1.60
+grpcio-tools>=1.60
+numpy>=1.26
+pandas>=2.1
+pyarrow>=14

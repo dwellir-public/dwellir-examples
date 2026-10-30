@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+v3.proto
+v3_pb2.py
+v3_pb2_grpc.py
+*.parquet

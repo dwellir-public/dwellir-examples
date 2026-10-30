@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-10-15",
+  "updated": "2026-10-25",
   "categories": [
     {
       "id": "code-examples",
@@ -212,6 +212,21 @@
       "status": "active",
       "created": "2026-10-15",
       "updated": "2026-10-15"
+    },
+    {
+      "name": "Hyperliquid gRPC Machine Learning",
+      "repo": "dwellir-examples",
+      "path": "examples/hyperliquid-grpc-ml",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-grpc-ml",
+      "category": "code-examples",
+      "description": "Python example that builds 1-minute bars from Hyperliquid fills over Dwellir gRPC, indexed fills, or OHLCV candles from the Hyperliquid Index, trains models bar by bar without lookahead, and scores forecasts with IC, hit rate and Newey-West t. Includes a Kalman hedge ratio, PCA across coins, walk-forward PCA regression, and a live runner that continues from replay into the live stream.",
+      "chains": ["hyperliquid"],
+      "features": ["gRPC", "streaming", "fills", "ohlcv", "hyperliquid-index", "machine-learning", "backtesting", "order-flow"],
+      "language": "Python",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-10-25",
+      "updated": "2026-10-28"
     },
     {
       "name": "Dwellir Skill",

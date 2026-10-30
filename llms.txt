@@ -3,7 +3,7 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-10-15
+> Last updated: 2026-10-28
 
 ## How to use this file
 
@@ -111,6 +111,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Language: Python
 - Difficulty: Intermediate
 - What it does: Reads a periodic_abci_states/<date>/<height>.rmp (or .rmp.lz4) snapshot with plain msgpack and writes every resting order on every perp, spot and outcome market as L4 JSON in the same [coin, [bids, asks]] shape as hl-node compute-l4-snapshots, with every hl-node field including the TP/SL children and trigger fields. Use it when hl-node fails on an older snapshot with "missing field ...", because Hyperliquid only publishes the latest hl-node and the state format changes at some upgrades. Includes compare_l4.py, which checks the output against an hl-node export; on block 1145900000 all 492,491 orders and 7,554 child orders match. Needs about 20 GB RAM.
+
+### Hyperliquid gRPC Machine Learning
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-grpc-ml
+- Chain: Hyperliquid mainnet (HyperCore)
+- Language: Python
+- Difficulty: Intermediate
+- What it does: Replays recent fills from Dwellir's Hyperliquid gRPC StreamFills feed (about 96 hours of replay on 2026-10-25; replay then live tail on one call) and rolls taker fills into 1-minute bars with signed flow, opening flow (from each fill's dir), and liquidation notional. mlkit.py has causal building blocks in numpy and pandas: rolling statistics, forward labels a model cannot see early, recursive least squares with forgetting and ridge, forecast scoring (IC, hit rate, Newey-West t, one-bar delay), a Kalman filter for a drifting hedge ratio, PCA, and walk-forward PCA regression. hl_index.py and collect_bars.py --source index|candles build the same bars from the Hyperliquid Index: allFillsByTime fills with liquidations joined from liquidationFillsByTime, or 1s/1m/5m OHLCV candle ranges and dashboard full-history exports, back to 2025-07-27 (bars from Index fills matched gRPC bars exactly on 2026-10-28). Candle bars have no taker side, so research.py switches to price inputs. research.py runs all of them on the bars; live.py warms the online model on replayed history and keeps it learning on live fills. Needs a Dwellir API key; the gRPC paths also need the Hyperliquid gRPC add-on.
 
 ---
 
