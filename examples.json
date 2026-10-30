@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-10-15",
+  "updated": "2026-10-30",
   "categories": [
     {
       "id": "code-examples",
@@ -212,6 +212,21 @@
       "status": "active",
       "created": "2026-10-15",
       "updated": "2026-10-15"
+    },
+    {
+      "name": "Hyperliquid Wallet Data in Go",
+      "repo": "dwellir-examples",
+      "path": "examples/hyperliquid-wallet-data-go",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-wallet-data-go",
+      "category": "code-examples",
+      "description": "Four Go programs for a list of your own Hyperliquid wallets: stream funding payments and ledger updates over gRPC StreamMiscEvents with resume, page full fill history from the Dwellir Index, read HIP-3 (TradeXYZ) markets, positions, prices and fills, and check builder-fee approvals and staking.",
+      "chains": ["hyperliquid"],
+      "features": ["gRPC", "streaming", "funding", "ledger-updates", "fills", "HIP-3", "builder-fees", "staking", "Info-API", "Index-API"],
+      "language": "Go",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-10-30",
+      "updated": "2026-10-30"
     },
     {
       "name": "Dwellir Skill",

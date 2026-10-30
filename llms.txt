@@ -3,7 +3,7 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-10-15
+> Last updated: 2026-10-30
 
 ## How to use this file
 
@@ -112,6 +112,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Intermediate
 - What it does: Reads a periodic_abci_states/<date>/<height>.rmp (or .rmp.lz4) snapshot with plain msgpack and writes every resting order on every perp, spot and outcome market as L4 JSON in the same [coin, [bids, asks]] shape as hl-node compute-l4-snapshots, with every hl-node field including the TP/SL children and trigger fields. Use it when hl-node fails on an older snapshot with "missing field ...", because Hyperliquid only publishes the latest hl-node and the state format changes at some upgrades. Includes compare_l4.py, which checks the output against an hl-node export; on block 1145900000 all 492,491 orders and 7,554 child orders match. Needs about 20 GB RAM.
 
+### Hyperliquid Wallet Data in Go
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-wallet-data-go
+- Chain: Hyperliquid mainnet
+- Language: Go
+- Difficulty: Intermediate
+- What it does: Four programs for a list of your own wallets (WALLETS in .env). wallet-events streams funding payments and ledger updates (deposit, withdraw, send, spotTransfer, internalTransfer, vault and staking moves) from gRPC StreamMiscEvents with a users filter, filters the hourly Funding deltas on the client (one event lists every position, tens of MB; 256 MB receive limit), and resumes from the last cursor with progress frames; replay reaches about 2 days back. fills-history pages userFillsByTime on the Dwellir Index (2,000 fills per page, history since 2025-07-27, billed per fill) and dedups by (tid, oid). hip3-markets uses perpDexs, meta/clearinghouseState/openOrders with "dex": "xyz", gRPC StreamBbo and StreamAllFills with dexes. builder-staking reads maxBuilderFee (tenths of a basis point), delegatorSummary and delegations. The README lists the Info request types the Dwellir endpoint does not serve (userFills, userFunding, userNonFundingLedgerUpdates, HIP-3 metaAndAssetCtxs, delegatorRewards) and the alternative for each. Generated gRPC code is included.
+
 ---
 
 ## AI Agent Skills
@@ -146,6 +153,7 @@ Skills are structured knowledge files that give AI coding agents deep context ab
 - All examples follow: clone → install → add API key → run
 - Python examples use pip + requirements.txt
 - Rust examples use cargo (cargo run --release)
+- Go examples use go run ./cmd/<name>
 - TypeScript examples use npm/pnpm + package.json
 - API keys come from https://www.dwellir.com
 - Each repo has its own README with full setup instructions
