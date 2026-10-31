@@ -25,6 +25,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid EVM Rust Trading Bot](./examples/hyperliquid-rust-trading-bot) | Hyperliquid EVM | Read a live DEX pool price over JSON-RPC, paper-trade a moving-average crossover | Rust | Beginner |
 | [Polygon Rust Trading Bot](./examples/polygon-rust-trading-bot) | Polygon | Read a live DEX pool price over JSON-RPC, paper-trade a moving-average crossover | Rust | Beginner |
 | [Hyperliquid ABCI Snapshot to L4](./examples/hyperliquid-abci-snapshot-to-l4) | Hyperliquid | Rebuild the full L4 order book from a `periodic_abci_states` snapshot without hl-node | Python | Intermediate |
+| [Hyperliquid Wallet Data in Go](./examples/hyperliquid-wallet-data-go) | Hyperliquid | Stream funding and ledger updates for your wallets over gRPC, page fill history from the Index, read HIP-3 (TradeXYZ) positions and prices, check builder fees and staking | Go | Intermediate |
 | [Hyperliquid gRPC Machine Learning](./examples/hyperliquid-grpc-ml) | Hyperliquid | Bars from gRPC fills, indexed fills or candles, learn bar by bar without lookahead, score forecasts with Newey-West t, Kalman and walk-forward PCA | Python | Intermediate |
 
 ## AI Agent Skills
@@ -67,7 +68,8 @@ graph LR
         E6[examples/robinhood-rust-<br/>trading-bot]
         E7[examples/*-rust-trading-bot<br/>Arbitrum, Arc, Base, BSC,<br/>HyperEVM, Polygon]
         E8[examples/hyperliquid-abci-<br/>snapshot-to-l4]
-        E9[examples/hyperliquid-<br/>grpc-ml]
+        E9[examples/hyperliquid-<br/>wallet-data-go]
+        E10[examples/hyperliquid-<br/>grpc-ml]
     end
 
     subgraph AI Agent Skills
@@ -80,7 +82,7 @@ graph LR
     end
 
     CAT -->|links to| E1 & E2 & E3 & E4 & E5
-    CAT -->|contains| E6 & E7 & E8 & E9
+    CAT -->|contains| E6 & E7 & E8 & E9 & E10
     CAT -->|links to| S1 & S2
     CAT -->|links to| T1
 
@@ -94,6 +96,7 @@ graph LR
     style E7 fill:#16213e,stroke:#0f3460,color:#fff
     style E8 fill:#16213e,stroke:#0f3460,color:#fff
     style E9 fill:#16213e,stroke:#0f3460,color:#fff
+    style E10 fill:#16213e,stroke:#0f3460,color:#fff
     style S1 fill:#0f3460,stroke:#533483,color:#fff
     style S2 fill:#0f3460,stroke:#533483,color:#fff
     style T1 fill:#1a1a2e,stroke:#0f3460,color:#fff
