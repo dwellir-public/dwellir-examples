@@ -27,6 +27,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid ABCI Snapshot to L4](./examples/hyperliquid-abci-snapshot-to-l4) | Hyperliquid | Rebuild the full L4 order book from a `periodic_abci_states` snapshot without hl-node | Python | Intermediate |
 | [Hyperliquid Wallet Data in Go](./examples/hyperliquid-wallet-data-go) | Hyperliquid | Stream funding and ledger updates for your wallets over gRPC, page fill history from the Index, read HIP-3 (TradeXYZ) positions and prices, check builder fees and staking | Go | Intermediate |
 | [Hyperliquid gRPC Machine Learning](./examples/hyperliquid-grpc-ml) | Hyperliquid | Bars from gRPC fills, indexed fills or candles, learn bar by bar without lookahead, score forecasts with Newey-West t, Kalman and walk-forward PCA | Python | Intermediate |
+| [Hyperliquid Trade Post-Mortem](./examples/hyperliquid-trade-postmortem) | Hyperliquid | Rebuild a wallet's closed trades from indexed fills, score each against 1s/1m candles (MFE, MAE, stop, target, hold, don't add), replay rules on earlier and later halves | Python | Intermediate |
 
 ## AI Agent Skills
 

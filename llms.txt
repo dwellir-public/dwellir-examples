@@ -126,6 +126,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Intermediate
 - What it does: Replays recent fills from Dwellir's Hyperliquid gRPC StreamFills feed (about 96 hours of replay on 2026-10-25; replay then live tail on one call) and rolls taker fills into 1-minute bars with signed flow, opening flow (from each fill's dir), and liquidation notional. mlkit.py has causal building blocks in numpy and pandas: rolling statistics, forward labels a model cannot see early, recursive least squares with forgetting and ridge, forecast scoring (IC, hit rate, Newey-West t, one-bar delay), a Kalman filter for a drifting hedge ratio, PCA, and walk-forward PCA regression. hl_index.py and collect_bars.py --source index|candles build the same bars from the Hyperliquid Index: allFillsByTime fills with liquidations joined from liquidationFillsByTime, or 1s/1m/5m OHLCV candle ranges and dashboard full-history exports, back to 2025-07-27 (bars from Index fills matched gRPC bars exactly on 2026-10-28). Candle bars have no taker side, so research.py switches to price inputs. research.py runs all of them on the bars; live.py warms the online model on replayed history and keeps it learning on live fills. Needs a Dwellir API key; the gRPC paths also need the Hyperliquid gRPC add-on.
 
+### Hyperliquid Trade Post-Mortem
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-trade-postmortem
+- Chain: Hyperliquid mainnet (HyperCore perps, including HIP-3)
+- Language: Python
+- Difficulty: Intermediate
+- What it does: Pages one wallet's fills from userFillsByTime on the Dwellir Hyperliquid Index (2,000 per page, cursor time_txIndex, billed per fill) and rebuilds round-trip trades from each fill's startPosition; fills in one block are ordered by txIndex, not tid. Loads 1s candles for each trade's entry and exit minute and 1m candles to 24 hours after the exit from /v1/candles/range, cached on disk. Measures MFE, MAE, capture and the move 1, 4 and 24 hours after the exit. simulate() replays the real entries and exits bar by bar under a rule (stop, take, trailing stop, max hours, no adds, stop then re-enter on a bounce), using the wallet's own fee rate plus 5 bps slippage on stops, and 1s candles to break ties when a stop and target share a minute. Each trade gets one of six lessons (skip, stop, take, hold, reenter, no_adds) or fine. test_rules() scores every rule on the earlier and later half of trades separately. postmortem.py prints the report; postmortem.ipynb adds charts. A 30-day run on a 1,118-fill wallet used about 44,000 API credits. PnL excludes funding.
+
 ---
 
 ## AI Agent Skills

@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-10-30",
+  "updated": "2026-11-04",
   "categories": [
     {
       "id": "code-examples",
@@ -242,6 +242,21 @@
       "status": "active",
       "created": "2026-10-25",
       "updated": "2026-10-28"
+    },
+    {
+      "name": "Hyperliquid Trade Post-Mortem",
+      "repo": "dwellir-examples",
+      "path": "examples/hyperliquid-trade-postmortem",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-trade-postmortem",
+      "category": "code-examples",
+      "description": "Python notebook and CLI that rebuild a wallet's closed Hyperliquid perp trades from userFillsByTime, line them up with 1s and 1m candles from the Hyperliquid Index, measure MFE, MAE, capture and post-exit moves, and answer six questions per trade: skip, stop, take profit, hold, close and reopen, or don't add. Replays stop, target, trailing, time and no-adding rules on the same trades and scores them on earlier and later halves.",
+      "chains": ["hyperliquid"],
+      "features": ["fills", "ohlcv", "hyperliquid-index", "backtesting", "trade-analysis", "jupyter"],
+      "language": "Python",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-11-04",
+      "updated": "2026-11-04"
     },
     {
       "name": "Dwellir Skill",
