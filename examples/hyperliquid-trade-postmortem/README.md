@@ -60,7 +60,7 @@ python postmortem.py 0xYourWallet --start 2026-10-05 --end 2026-11-04 --stop 0.0
 
 **Price paths.** For each trade we load 1s candles for the entry minute and the exit minute, and 1m candles from entry to 24 hours after the exit. Overlapping windows for one coin are merged into one request.
 
-**Excursions.** MFE is the best move in your favour while the trade was open, MAE the worst move against you, both in % of your average entry. Capture is the share of the MFE that the exit kept.
+**Excursions.** MFE is the best move in your favour while the trade was open, MAE the worst move against you, both in % of your average entry. Capture is the realized move as a fraction of the MFE. Post-exit moves are in % of your average exit.
 
 **Rule replay.** `simulate()` walks the trade bar by bar. Your real entries and exits happen as they did. When a rule fires, it closes the rest of the position at the rule's price. Stops and time exits also pay 5 bps of slippage, and every synthetic fill pays your own average fee rate. A rule that never fires returns your real PnL. If a stop and a target both fall inside one 1m bar, that minute's 1s candles decide which traded first.
 
@@ -73,7 +73,7 @@ python postmortem.py 0xYourWallet --start 2026-10-05 --end 2026-11-04 --stop 0.0
 | `skip` | The trade lost, and its best move was smaller than its fees plus 0.2%. It never offered a real chance |
 | `stop` | A stop at your stop size would have saved the most |
 | `take` | A target at your target size would have saved the most |
-| `hold` | Price kept moving your way by at least 0.5%, by more than the trade made, and was still there 4 hours later |
+| `hold` | Price 4 hours after the exit was more than 0.5% further your way, and further than the trade itself made |
 | `reenter` | Stopping out, then buying back after a half-stop bounce off the low, would have saved the most |
 | `no_adds` | The same exits without the entries placed after the first minute would have saved the most |
 | `fine` | No alternative was worth more than 0.1% of the trade's notional |
@@ -89,5 +89,5 @@ Fills and candles are billed per object returned. A 30-day review of a wallet wi
 - PnL excludes funding. Hyperliquid's `closedPnl` excludes it too, so every comparison is like for like, but a trade held through several funding hours had a different real result.
 - The Index covers fills and candles back to 27 July 2025.
 - Spot (`@123`) and HIP-4 outcome (`#123`) markets are skipped.
-- Liquidations are scored like any other exit. Fills from `userFillsByTime` do not mark them.
+- Liquidations are scored like any other exit unless a fill carries a `liquidation` field. To be sure, join `liquidationFillsByTime` on `tid`.
 - The rule replay works on 1m bars between the entry and exit minutes, so it assumes your fills inside a minute happened before that minute's high or low. Tight stops on very short trades are the least reliable.
