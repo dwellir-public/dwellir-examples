@@ -32,12 +32,16 @@ CACHE_DIR = Path(__file__).parent / ".cache"
 
 def info(query: dict, timeout: float = 30.0):
     """POST one Info query to the right host and return the parsed JSON."""
-    if query["type"] in PUBLIC_ONLY or not API_KEY:
+    if query["type"] in PUBLIC_ONLY:
         url = PUBLIC_INFO
-    else:
+    elif API_KEY:
         url = DWELLIR_INFO
+    else:
+        raise RuntimeError("Set DWELLIR_API_KEY to query the Dwellir Hyperliquid Info endpoint")
     resp = httpx.post(url, json=query, timeout=timeout)
-    resp.raise_for_status()
+    if resp.status_code >= 400:
+        # The key sits in the Dwellir URL, so never let httpx print it.
+        raise RuntimeError(f"{query['type']} failed with HTTP {resp.status_code}: {resp.text[:200]}")
     return resp.json()
 
 
@@ -49,8 +53,9 @@ def feed(name: str, max_age_s: int = 600):
         return json.loads(path.read_text())
     resp = httpx.get(f"{STATS_BASE}/{name}", timeout=120.0)
     resp.raise_for_status()
+    data = resp.json()  # parse before caching, so a bad body is never reused
     path.write_bytes(resp.content)
-    return resp.json()
+    return data
 
 
 def windows(pairs):

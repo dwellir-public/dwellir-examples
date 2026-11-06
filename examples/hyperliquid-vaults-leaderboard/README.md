@@ -15,7 +15,7 @@ Three small Python programs that read Hyperliquid vault and leaderboard data thr
 - Language: Python 3.10 or newer
 - Difficulty: Beginner
 - Dependencies: `httpx`
-- Needs: a Dwellir API key. No gRPC add-on.
+- Needs: a Dwellir API key for the Info queries (`vaults.py show`, `--profile`, `my_vaults.py`). The feed-only commands run without one. No gRPC add-on.
 
 Companion guide: [Hyperliquid vaults and leaderboard data via API](https://www.dwellir.com/guides/hyperliquid-vaults-leaderboard).
 

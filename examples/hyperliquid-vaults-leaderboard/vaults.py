@@ -12,6 +12,11 @@ from datetime import datetime, timezone
 from hl_api import feed, info, pct, usd, windows
 
 
+def last(series: list) -> float:
+    """Last value of a cumulative PnL series, or 0 when the window has no points yet."""
+    return float(series[-1]) if series else 0.0
+
+
 def load_vaults(open_only: bool = True, min_tvl: float = 0.0) -> list[dict]:
     """Flatten the /Mainnet/vaults feed into one dict per vault."""
     rows = []
@@ -30,11 +35,11 @@ def load_vaults(open_only: bool = True, min_tvl: float = 0.0) -> list[dict]:
             "tvl": tvl,
             "apr": float(entry["apr"]),
             # Each window is a short series of cumulative PnL points. The last
-            # point is the PnL over that window.
-            "pnl_day": float(pnls["day"][-1]),
-            "pnl_week": float(pnls["week"][-1]),
-            "pnl_month": float(pnls["month"][-1]),
-            "pnl_all": float(pnls["allTime"][-1]),
+            # point is the PnL over that window; a brand-new vault has none yet.
+            "pnl_day": last(pnls["day"]),
+            "pnl_week": last(pnls["week"]),
+            "pnl_month": last(pnls["month"]),
+            "pnl_all": last(pnls["allTime"]),
             "created": datetime.fromtimestamp(summary["createTimeMillis"] / 1000, timezone.utc),
             "kind": summary["relationship"]["type"],
         })
@@ -70,6 +75,9 @@ def show_vault(address: str) -> None:
     print("  returns")
     for window in ("day", "week", "month", "allTime"):
         history = portfolio[window]["accountValueHistory"]
+        if not history:
+            print(f"    {window:<8} no history yet")
+            continue
         pnl = portfolio[window]["pnlHistory"][-1][1]
         start, end = float(history[0][1]), float(history[-1][1])
         print(f"    {window:<8} equity {usd(start):>14} -> {usd(end):>14}   "

@@ -34,7 +34,8 @@ def load_leaderboard(min_value: float = 0.0, min_volume: float = 0.0, window: st
             "address": row["ethAddress"],
             "name": row.get("displayName") or "",
             "value": value,
-            # perf[window] is {"pnl": ..., "roi": ..., "vlm": ...} as strings.
+            # perf[window] is {"pnl": ..., "roi": ..., "vlm": ...} as strings. Flattened
+            # to pnl_day, roi_day, vlm_day, pnl_week, ... pnl_allTime, roi_allTime, vlm_allTime.
             **{f"{m}_{w}": float(perf[w][m]) for w in WINDOWS for m in METRICS},
         })
     return rows
@@ -77,7 +78,7 @@ def describe(state: dict) -> str:
     side = "long" if float(big["szi"]) > 0 else "short"
     return (f"{len(positions)} positions, largest {side} {big['coin']} "
             f"{usd(big['positionValue'])} at {big['leverage']['value']}x, "
-            f"margin used {used / value * 100:.0f}%")
+            f"margin used {used / value * 100 if value else 0:.0f}%")
 
 
 def main() -> None:
@@ -93,7 +94,7 @@ def main() -> None:
     top.add_argument("--min-volume", type=float, default=0.0,
                      help="ignore accounts that traded less than this in the window (ROI on untraded deposits is noise)")
     top.add_argument("--vault-leaders", action="store_true",
-                     help="only traders who lead an open vault you could deposit into")
+                     help="only traders who lead at least one open vault")
     top.add_argument("--profile", action="store_true",
                      help="add live positions from Dwellir batchClearinghouseStates")
 
@@ -111,9 +112,14 @@ def main() -> None:
     rows = load_leaderboard(min_value=args.min_value, min_volume=args.min_volume, window=args.window)
     print(f"{len(rows)} traders after filters")
     if args.vault_leaders:
-        vault_by_leader = {v["leader"]: v for v in load_vaults(open_only=True)}
-        rows = [dict(r, name=f"leads {vault_by_leader[r['address']]['name']}")
-                for r in rows if r["address"] in vault_by_leader]
+        # A leader can run several vaults (HLP's leader runs eight). Name the
+        # largest and count the rest.
+        vaults_by_leader: dict[str, list[dict]] = {}
+        for v in sorted(load_vaults(open_only=True), key=lambda v: v["tvl"], reverse=True):
+            vaults_by_leader.setdefault(v["leader"], []).append(v)
+        rows = [dict(r, name=f"leads {vs[0]['name']} ({usd(vs[0]['tvl'])} TVL"
+                             + (f", and {len(vs) - 1} more)" if len(vs) > 1 else ")"))
+                for r in rows if (vs := vaults_by_leader.get(r["address"]))]
         print(f"{len(rows)} of them lead an open vault")
     print_top(rows, args.window, args.by, args.n, live=args.profile)
 

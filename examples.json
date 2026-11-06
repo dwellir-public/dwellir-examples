@@ -29,13 +29,8 @@
       "url": "https://github.com/dwellir-public/gRPC-code-examples",
       "category": "code-examples",
       "description": "Collection of code examples to get started with the Dwellir gRPC service",
-      "chains": [
-        "multi-chain"
-      ],
-      "features": [
-        "gRPC",
-        "streaming"
-      ],
+      "chains": ["multi-chain"],
+      "features": ["gRPC", "streaming"],
       "language": "Python",
       "difficulty": "beginner",
       "status": "active",
@@ -48,16 +43,8 @@
       "url": "https://github.com/dwellir-public/hyperliquid-orderbook-server-code-examples",
       "category": "code-examples",
       "description": "Educational examples for connecting to Hyperliquid orderbook data via WebSocket. Progressive difficulty from basic connections to market analytics.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "WebSocket",
-        "orderbook",
-        "L2-data",
-        "L4-data",
-        "market-metrics"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["WebSocket", "orderbook", "L2-data", "L4-data", "market-metrics"],
       "language": "Python",
       "difficulty": "beginner-to-intermediate",
       "status": "active",
@@ -70,15 +57,8 @@
       "url": "https://github.com/dwellir-public/hyperliquid-builder-codes-demo",
       "category": "code-examples",
       "description": "Interactive Next.js demo for Hyperliquid builder codes — approve, trade with builder fees, and revoke.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "builder-codes",
-        "trading",
-        "Next.js",
-        "wallet-connect"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["builder-codes", "trading", "Next.js", "wallet-connect"],
       "language": "TypeScript",
       "difficulty": "intermediate",
       "status": "active",
@@ -91,15 +71,8 @@
       "url": "https://github.com/dwellir-public/x402-demo",
       "category": "code-examples",
       "description": "Minimal demo of the x402 protocol — HTTP-native payments using USDC on Base. Server returns HTTP 402, client pays, request goes through. No API keys, no subscriptions.",
-      "chains": [
-        "base"
-      ],
-      "features": [
-        "x402",
-        "micropayments",
-        "USDC",
-        "HTTP-402"
-      ],
+      "chains": ["base"],
+      "features": ["x402", "micropayments", "USDC", "HTTP-402"],
       "language": "TypeScript",
       "difficulty": "beginner",
       "status": "active",
@@ -112,16 +85,8 @@
       "url": "https://github.com/dwellir-public/example-base-flashblocks",
       "category": "code-examples",
       "description": "Side-by-side visualization comparing 200ms flashblock pre-confirmations vs 2-second standard block finality on Base, powered by Dwellir RPC.",
-      "chains": [
-        "base"
-      ],
-      "features": [
-        "flashblocks",
-        "pre-confirmations",
-        "JSON-RPC",
-        "Next.js",
-        "real-time"
-      ],
+      "chains": ["base"],
+      "features": ["flashblocks", "pre-confirmations", "JSON-RPC", "Next.js", "real-time"],
       "language": "TypeScript",
       "difficulty": "beginner",
       "status": "active",
@@ -135,16 +100,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/robinhood-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WETH/USDG pool price on Robinhood Chain via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "robinhood"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["robinhood"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -158,16 +115,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/arbitrum-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WETH/USDC pool price on Arbitrum via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "arbitrum"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["arbitrum"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -181,16 +130,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/arc-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WETH/USDC pool price on Arc via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "arc"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["arc"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -204,16 +145,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/base-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WETH/USDC pool price on Base via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "base"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["base"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -227,16 +160,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/bsc-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live USDT/WBNB pool price on BSC via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "bsc"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["bsc"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -250,16 +175,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WHYPE/USDC pool price on Hyperliquid EVM via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -273,16 +190,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/polygon-rust-trading-bot",
       "category": "code-examples",
       "description": "54-line Rust bot that reads the live WPOL/USDC pool price on Polygon via eth_call (slot0) through a Dwellir endpoint and paper-trades a moving-average crossover. Read-only; never signs transactions.",
-      "chains": [
-        "polygon"
-      ],
-      "features": [
-        "JSON-RPC",
-        "eth_call",
-        "DEX-price",
-        "trading-bot",
-        "paper-trading"
-      ],
+      "chains": ["polygon"],
+      "features": ["JSON-RPC", "eth_call", "DEX-price", "trading-bot", "paper-trading"],
       "language": "Rust",
       "difficulty": "beginner",
       "status": "active",
@@ -296,16 +205,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-abci-snapshot-to-l4",
       "category": "code-examples",
       "description": "Python script that reads a Hyperliquid periodic_abci_states snapshot with plain msgpack and writes the full L4 order book in the same format as hl-node compute-l4-snapshots. Works on snapshots the current hl-node cannot read. Verified order for order against hl-node on 492,491 orders.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "L4-data",
-        "orderbook",
-        "ABCI-snapshot",
-        "msgpack",
-        "historical-data"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["L4-data", "orderbook", "ABCI-snapshot", "msgpack", "historical-data"],
       "language": "Python",
       "difficulty": "intermediate",
       "status": "active",
@@ -319,21 +220,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-wallet-data-go",
       "category": "code-examples",
       "description": "Four Go programs for a list of your own Hyperliquid wallets: stream funding payments and ledger updates over gRPC StreamMiscEvents with resume, page full fill history from the Dwellir Index, read HIP-3 (TradeXYZ) markets, positions, prices and fills, and check builder-fee approvals and staking.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "gRPC",
-        "streaming",
-        "funding",
-        "ledger-updates",
-        "fills",
-        "HIP-3",
-        "builder-fees",
-        "staking",
-        "Info-API",
-        "Index-API"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["gRPC", "streaming", "funding", "ledger-updates", "fills", "HIP-3", "builder-fees", "staking", "Info-API", "Index-API"],
       "language": "Go",
       "difficulty": "intermediate",
       "status": "active",
@@ -347,19 +235,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-grpc-ml",
       "category": "code-examples",
       "description": "Python example that builds 1-minute bars from Hyperliquid fills over Dwellir gRPC, indexed fills, or OHLCV candles from the Hyperliquid Index, trains models bar by bar without lookahead, and scores forecasts with IC, hit rate and Newey-West t. Includes a Kalman hedge ratio, PCA across coins, walk-forward PCA regression, and a live runner that continues from replay into the live stream.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "gRPC",
-        "streaming",
-        "fills",
-        "ohlcv",
-        "hyperliquid-index",
-        "machine-learning",
-        "backtesting",
-        "order-flow"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["gRPC", "streaming", "fills", "ohlcv", "hyperliquid-index", "machine-learning", "backtesting", "order-flow"],
       "language": "Python",
       "difficulty": "intermediate",
       "status": "active",
@@ -373,17 +250,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-trade-postmortem",
       "category": "code-examples",
       "description": "Python notebook and CLI that rebuild a wallet's closed Hyperliquid perp trades from userFillsByTime, line them up with 1s and 1m candles from the Hyperliquid Index, measure MFE, MAE, capture and post-exit moves, and answer six questions per trade: skip, stop, take profit, hold, close and reopen, or don't add. Replays stop, target, trailing, time and no-adding rules on the same trades and scores them on earlier and later halves.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "fills",
-        "ohlcv",
-        "hyperliquid-index",
-        "backtesting",
-        "trade-analysis",
-        "jupyter"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["fills", "ohlcv", "hyperliquid-index", "backtesting", "trade-analysis", "jupyter"],
       "language": "Python",
       "difficulty": "intermediate",
       "status": "active",
@@ -397,16 +265,8 @@
       "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-vaults-leaderboard",
       "category": "code-examples",
       "description": "Three Python CLIs for Hyperliquid vault and leaderboard data. Ranks every open vault by TVL, APR or window PnL from the stats-data vaults feed, inspects one vault with vaultDetails plus live positions from clearinghouseState, lists the vaults an address leads with leadingVaults, ranks 48,000 traders by PnL, ROI or volume from the leaderboard feed, profiles the top ones in one batchClearinghouseStates call, and shows a wallet's vault deposits and lockups with userVaultEquities.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "vaults",
-        "leaderboard",
-        "info-endpoint",
-        "batchClearinghouseStates",
-        "copy-trading"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["vaults", "leaderboard", "Info-API", "batchClearinghouseStates", "copy-trading"],
       "language": "Python",
       "difficulty": "beginner",
       "status": "active",
@@ -419,19 +279,8 @@
       "url": "https://github.com/dwellir-public/dwellir-skill",
       "category": "ai-agent-skills",
       "description": "AI agent skills for blockchain development — 140+ chains, Polkadot ecosystem, EVM networks, trace/debug APIs, powered by Dwellir.",
-      "chains": [
-        "multi-chain",
-        "ethereum",
-        "polkadot",
-        "hyperliquid"
-      ],
-      "features": [
-        "EVM",
-        "Substrate",
-        "trace-APIs",
-        "debug-APIs",
-        "WebSocket"
-      ],
+      "chains": ["multi-chain", "ethereum", "polkadot", "hyperliquid"],
+      "features": ["EVM", "Substrate", "trace-APIs", "debug-APIs", "WebSocket"],
       "language": null,
       "difficulty": "beginner",
       "status": "active",
@@ -445,16 +294,8 @@
       "url": "https://github.com/dwellir-public/hyperliquid-skills",
       "category": "ai-agent-skills",
       "description": "Hyperliquid skill for AI agents — HyperEVM JSON-RPC, Info API, gRPC streaming, Orderbook WebSocket via Dwellir.",
-      "chains": [
-        "hyperliquid"
-      ],
-      "features": [
-        "HyperEVM",
-        "JSON-RPC",
-        "Info-API",
-        "gRPC",
-        "orderbook-WebSocket"
-      ],
+      "chains": ["hyperliquid"],
+      "features": ["HyperEVM", "JSON-RPC", "Info-API", "gRPC", "orderbook-WebSocket"],
       "language": null,
       "difficulty": "beginner",
       "status": "active",
@@ -469,11 +310,7 @@
       "category": "developer-tools",
       "description": "Sandboxed benchmark harness for measuring how infrastructure skills affect AI coding agent performance.",
       "chains": [],
-      "features": [
-        "benchmarking",
-        "AI-agents",
-        "sandboxed"
-      ],
+      "features": ["benchmarking", "AI-agents", "sandboxed"],
       "language": "Shell",
       "difficulty": "intermediate",
       "status": "active",
