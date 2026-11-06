@@ -133,6 +133,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 - Difficulty: Intermediate
 - What it does: Pages one wallet's fills from userFillsByTime on the Dwellir Hyperliquid Index (2,000 per page, cursor time_txIndex, billed per fill) and rebuilds round-trip trades from each fill's startPosition; fills in one block are ordered by txIndex, not tid. Loads 1s candles for each trade's entry and exit minute and 1m candles to 24 hours after the exit from /v1/candles/range, cached on disk. Measures MFE, MAE, capture and the move 1, 4 and 24 hours after the exit. simulate() replays the real entries and exits bar by bar under a rule (stop, take, trailing stop, max hours, no adds, stop then re-enter on a bounce), using the wallet's own fee rate plus 5 bps slippage on stops, and 1s candles to break ties when a stop and target share a minute. Each trade gets one of six lessons (skip, stop, take, hold, reenter, no_adds) or fine. test_rules() scores every rule on the earlier and later half of trades separately. postmortem.py prints the report; postmortem.ipynb adds charts. A 30-day run on a 1,118-fill wallet used about 44,000 API credits. PnL excludes funding.
 
+### Hyperliquid Vaults and Leaderboard
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-vaults-leaderboard
+- Chain: Hyperliquid mainnet (HyperCore)
+- Language: Python
+- Difficulty: Beginner
+- What it does: Ranks every open Hyperliquid vault by TVL, APR or day/week/month/all-time PnL from the stats-data vaults feed (9,478 vaults, 3,062 open, about 14 MB, cached on disk), inspects one vault with the public vaultDetails query (leader, fees, window returns, largest followers, child vaults for HLP) plus its live positions from Dwellir clearinghouseState, and lists the vaults an address leads with leadingVaults (needs user; returns 422 without it). Ranks the 48,192 traders in the stats-data leaderboard feed by PnL, ROI or volume per window with min account value and min volume filters, keeps only vault leaders when asked, and profiles the top N in one Dwellir-only batchClearinghouseStates call (billed per wallet). Shows a wallet's vault deposits, APR and lockups with userVaultEquities. vaultSummaries returns [] and vaultDetails/portfolio are not on the Dwellir proxy, so hl_api.py routes those two to the public Info endpoint.
+
 ---
 
 ## AI Agent Skills

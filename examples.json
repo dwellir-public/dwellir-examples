@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "categories": [
     {
       "id": "code-examples",
@@ -257,6 +257,21 @@
       "status": "active",
       "created": "2026-11-04",
       "updated": "2026-11-04"
+    },
+    {
+      "name": "Hyperliquid Vaults and Leaderboard",
+      "repo": "dwellir-examples",
+      "path": "examples/hyperliquid-vaults-leaderboard",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/hyperliquid-vaults-leaderboard",
+      "category": "code-examples",
+      "description": "Three Python CLIs for Hyperliquid vault and leaderboard data. Ranks every open vault by TVL, APR or window PnL from the stats-data vaults feed, inspects one vault with vaultDetails plus live positions from clearinghouseState, lists the vaults an address leads with leadingVaults, ranks 48,000 traders by PnL, ROI or volume from the leaderboard feed, profiles the top ones in one batchClearinghouseStates call, and shows a wallet's vault deposits and lockups with userVaultEquities.",
+      "chains": ["hyperliquid"],
+      "features": ["vaults", "leaderboard", "Info-API", "batchClearinghouseStates", "copy-trading"],
+      "language": "Python",
+      "difficulty": "beginner",
+      "status": "active",
+      "created": "2026-11-05",
+      "updated": "2026-11-05"
     },
     {
       "name": "Dwellir Skill",
