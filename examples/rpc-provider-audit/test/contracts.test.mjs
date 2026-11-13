@@ -41,7 +41,22 @@ test('RPC envelopes reject null, missing IDs, contradictory fields and malformed
     response({ jsonrpc: '2.0', id: 1, error: { code: -32000, message: 'unavailable' } }).verdict,
     'RPC -32000',
   );
-  assert.equal(response({}, 429).verdict, 'HTTP 429');
+  for (const status of [400, 429]) {
+    const validError = { jsonrpc: '2.0', id: 1, error: { code: -32005, message: 'Range limit' } };
+    assert.deepEqual(response(validError, status), {
+      verdict: `HTTP ${status}`,
+      code: -32005,
+      message: 'Range limit',
+    });
+    for (const body of [
+      {},
+      { ...validError, id: 2 },
+      { ...validError, result: [] },
+      { ...validError, error: { code: '-32005', message: 'Range limit' } },
+      { ...validError, error: { code: -32005 } },
+      { jsonrpc: '2.0', id: 1, result: [] },
+    ]) assert.deepEqual(response(body, status), { verdict: `HTTP ${status}` });
+  }
 });
 
 test('a block and receipt must belong to the requested identities', () => {

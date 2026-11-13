@@ -83,8 +83,20 @@ test('CLI reports archive failures, log caps, pricing, batch members and a final
       report.archive.some((row) => row.check.startsWith('receipt') && row.verdict === 'ok'),
     );
     assert.equal(report.cost[0].estimatedUsd, 49);
-    assert.equal(report.cost[1].estimatedUsd, null);
-    assert.ok(report.logs.some((row) => row.code === -32005));
+    assert.equal(report.cost[1].estimatedUsd, 118.56);
+    for (const [endpoint, status] of [
+      ['fixture-complete', 400],
+      ['fixture-pruned', 429],
+    ]) {
+      const cap = report.logs.find((row) => row.endpoint === endpoint && row.http === status);
+      assert.equal(cap.verdict, `HTTP ${status}`);
+      assert.equal(cap.code, -32005);
+      assert.match(cap.message, /Range exceeds 500 blocks/);
+      assert.ok(!cap.message.includes(key));
+      assert.equal(cap.fingerprint, null);
+      assert.equal(cap.count, null);
+      assert.equal(cap.comparison, 'unavailable');
+    }
     assert.ok(report.logs.some((row) => row.comparison === 'match'));
     assert.ok(
       report.errors.some(
@@ -144,7 +156,7 @@ test('cost-only CLI prices the monthly mix without credentials or network calls'
     assert.equal(result.code, 0, result.output);
     const report = JSON.parse(readFileSync(`${output}.json`));
     assert.equal(report.cost[0].estimatedUsd, 49);
-    assert.equal(report.cost[1].estimatedUsd, null);
+    assert.equal(report.cost[1].estimatedUsd, 118.56);
     assert.deepEqual(report.requests, []);
   } finally {
     rmSync(directory, { recursive: true, force: true });

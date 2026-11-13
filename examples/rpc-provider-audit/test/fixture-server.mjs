@@ -65,7 +65,10 @@ export async function fixtureServer(pinnedHash) {
       if (method === 'eth_getLogs') {
         const filter = params[0];
         const width = Number(BigInt(filter.toBlock) - BigInt(filter.fromBlock)) + 1;
-        if (width > 500) return error(id, -32005, 'Range exceeds 500 blocks');
+        if (width > 500) {
+          response.statusCode = pruned ? 429 : 400;
+          return error(id, -32005, `Range exceeds 500 blocks; key=${request.url.split('/').at(-1)}`);
+        }
         return result(id, [
           {
             blockNumber: filter.toBlock,

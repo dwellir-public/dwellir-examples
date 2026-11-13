@@ -7,31 +7,30 @@ export const hash = (value) => typeof value === 'string' && /^0x[0-9a-f]{64}$/i.
 const address = (value) => typeof value === 'string' && /^0x[0-9a-f]{40}$/i.test(value);
 const data = (value) => typeof value === 'string' && /^0x(?:[0-9a-f]{2})*$/i.test(value);
 const object = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+const rpcErrorValid = (error) =>
+  object(error) && Number.isInteger(error.code) && typeof error.message === 'string';
 
 export function rpcResult(response, id = 1) {
   if (response.failure) return { verdict: response.failure };
-  if (response.status < 200 || response.status >= 300)
-    return { verdict: `HTTP ${response.status}` };
+  const httpFailure =
+    response.status < 200 || response.status >= 300 ? `HTTP ${response.status}` : null;
   const body = response.body;
   if (!object(body) || body.jsonrpc !== '2.0' || body.id !== id)
-    return { verdict: 'invalid envelope' };
+    return { verdict: httpFailure ?? 'invalid envelope' };
   const hasResult = Object.hasOwn(body, 'result');
   const hasError = Object.hasOwn(body, 'error');
-  if (hasResult === hasError) return { verdict: 'invalid envelope' };
+  if (hasResult === hasError) return { verdict: httpFailure ?? 'invalid envelope' };
   if (hasError) {
-    if (
-      !object(body.error) ||
-      !Number.isInteger(body.error.code) ||
-      typeof body.error.message !== 'string'
-    ) {
-      return { verdict: 'invalid error' };
+    if (!rpcErrorValid(body.error)) {
+      return { verdict: httpFailure ?? 'invalid error' };
     }
     return {
-      verdict: `RPC ${body.error.code}`,
+      verdict: httpFailure ?? `RPC ${body.error.code}`,
       code: body.error.code,
       message: body.error.message,
     };
   }
+  if (httpFailure) return { verdict: httpFailure };
   if (body.result === null) return { verdict: 'null' };
   return { verdict: 'ok', value: body.result };
 }

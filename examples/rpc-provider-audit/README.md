@@ -131,7 +131,33 @@ The audit records disconnects without reconnecting. Your application still needs
 ## Price your workload
 
 `prices.json` separates commercial data from the probes. Every plan has a primary source URL and a `checkedAt` date.
-Shipped numeric rates cover Dwellir's monthly Developer, Growth and Scale shared plans, checked on 13 November 2026.
+Select the actual plan with each endpoint's `priceId` in `config.json`.
+The default compares Dwellir Developer with Alchemy Pay as You Go.
+Numeric entries also cover Dwellir Growth and Scale, QuickNode Build, Accelerate and Scale, and Chainstack Growth, Pro and Business.
+Rates and method weights were checked on 13 November 2026.
+
+For the sample 2 million `eth_blockNumber` calls and 8 million latest-block `eth_call` requests:
+
+| Price ID | Monthly units | Subscription | Overage | Monthly estimate |
+| --- | --- | --- | --- | --- |
+| `dwellir-developer` | 10M responses | $49.00 | $0.00 | $49.00 |
+| `alchemy-payg` | 228M CU | $0.00 | $118.56 | $118.56 |
+| `quicknode-build` | 200M API credits | $49.00 | $74.40 | $123.40 |
+| `chainstack-growth-full` | 10M RU | $49.00 | $0.00 | $49.00 |
+
+CU means compute units. RU means request units.
+These estimates include the full monthly subscription, without allocating it across the allowance.
+Dwellir includes 25M responses, with $5/M overage on Developer.
+Alchemy charges $0.52/M CU for all PAYG usage, without the separate Free plan's allowance.
+Its method weights are 10 CU for `eth_blockNumber` and 26 CU for `eth_call`.
+QuickNode Build includes 80M credits, then charges $0.62/M. Both methods cost 20 credits each on Ethereum.
+Chainstack Growth includes 20M RU, then charges $15/M. Regional and Global full-node requests cost 1 RU each.
+
+Choose a Chainstack `-archive` entry for a workload billed entirely as archive requests, at 2 RU each.
+For mixed full and archive calls, calculate their combined RU before applying one plan allowance and subscription.
+Do not add separate full and archive estimates, which would count the subscription twice.
+Every entry states its service scope. Match that scope to your actual requests.
+Price sources and conflicting official rates remain in `prices.json`; the provider's pricing page takes precedence.
 
 For a response plan:
 
@@ -141,14 +167,7 @@ overage = max(0, units - includedUnits) / 1,000,000 * overageUsdPerMillion
 estimate = monthlyUsd + roundToCents(overage)
 ```
 
-The sample 10 million calls cost $49.00 on Developer under that model.
-At 30 million calls, the calculation is $49 + 5 × $5 = $74.00.
-This is the subscription plus metered overage, not an allocated fraction of the subscription.
-
-Alchemy's official pages conflict on the pay-as-you-go rate.
-The [pricing page](https://www.alchemy.com/pricing) lists $0.52 per million compute units.
-The [plan reference](https://www.alchemy.com/docs/reference/pricing-plans) lists $0.525.
-Its shipped entry returns `unpriced` until you confirm the applicable rate.
+At 30 million responses, Developer costs $49 + 5 × $5 = $74.00.
 
 To add a compute-unit plan, set `model` to `compute-units` and provide all of these fields:
 
@@ -179,6 +198,8 @@ A missing variable, invalid URL, invalid configuration or write failure exits wi
 A completed audit exits with code 0 even when endpoints fail checks. Read the report's verdicts before using it in automation.
 Endpoints that fail chain or pinned-block checks receive no later capability probes.
 HTTPS and WSS are required, except loopback HTTP and WS for local fixtures.
+Valid JSON-RPC error codes and messages remain beside non-2xx HTTP failure verdicts.
+HTTP failures never supply successful values or agreement fingerprints.
 Provider error messages are redacted and shortened. Raw response bodies and expanded URLs never enter output files.
 Report timestamps use UTC, with no fixed city or timezone.
 
