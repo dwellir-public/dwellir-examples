@@ -4,7 +4,7 @@
   "organization": "dwellir-public",
   "organization_url": "https://github.com/dwellir-public",
   "website": "https://www.dwellir.com",
-  "updated": "2026-11-05",
+  "updated": "2026-11-13",
   "categories": [
     {
       "id": "code-examples",
@@ -272,6 +272,21 @@
       "status": "active",
       "created": "2026-11-05",
       "updated": "2026-11-05"
+    },
+    {
+      "name": "Multichain ERC-20 Transfers",
+      "repo": "dwellir-examples",
+      "path": "examples/multichain-erc20-transfers",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/multichain-erc20-transfers",
+      "category": "code-examples",
+      "description": "Python CLI that pulls one address's ERC-20 Transfer logs on Ethereum, Base, Arbitrum and Polygon with plain eth_getLogs (address in topics[1] for sent, topics[2] for received), merges both directions per chain in block order, resolves decimals and symbol with eth_call, marks rows above the finalized block, writes one CSV per chain, and re-checks non-final rows for reorgs.",
+      "chains": ["ethereum", "base", "arbitrum", "polygon"],
+      "features": ["eth_getLogs", "erc20", "eth_call", "csv", "reorg-detection", "multi-chain"],
+      "language": "Python",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-11-13",
+      "updated": "2026-11-13"
     },
     {
       "name": "Dwellir Skill",
