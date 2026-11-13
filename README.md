@@ -29,6 +29,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid gRPC Machine Learning](./examples/hyperliquid-grpc-ml) | Hyperliquid | Bars from gRPC fills, indexed fills or candles, learn bar by bar without lookahead, score forecasts with Newey-West t, Kalman and walk-forward PCA | Python | Intermediate |
 | [Hyperliquid Trade Post-Mortem](./examples/hyperliquid-trade-postmortem) | Hyperliquid | Rebuild a wallet's closed trades from indexed fills, score each against 1s/1m candles (MFE, MAE, stop, target, hold, don't add), replay rules on earlier and later halves | Python | Intermediate |
 | [Hyperliquid Vaults and Leaderboard](./examples/hyperliquid-vaults-leaderboard) | Hyperliquid | Rank vaults by TVL, APR or PnL, inspect one before depositing, rank traders from the leaderboard feed, profile the top ones in one batch call, list a wallet's vault deposits | Python | Beginner |
+| [Multichain ERC-20 Transfers](./examples/multichain-erc20-transfers) | Ethereum, Base, Arbitrum, Polygon | One address's ERC-20 transfers from plain `eth_getLogs`, both directions merged, exact amounts via `eth_call` decimals, CSV per chain, reorg check, native transfers from traces | Python | Intermediate |
 
 ## AI Agent Skills
 
