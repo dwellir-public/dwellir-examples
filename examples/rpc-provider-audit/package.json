@@ -1,0 +1,7 @@
+{
+  "name": "rpc-provider-audit",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.15" },
+  "scripts": { "start": "node audit.mjs", "test": "node --test test/*.test.mjs" }
+}

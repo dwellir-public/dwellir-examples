@@ -1,0 +1,26 @@
+name: RPC provider audit fixtures
+
+on:
+  pull_request:
+    paths:
+      - 'examples/rpc-provider-audit/**'
+      - '.github/workflows/rpc-provider-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'examples/rpc-provider-audit/**'
+      - '.github/workflows/rpc-provider-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm --prefix examples/rpc-provider-audit test

@@ -3,7 +3,7 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-10-30
+> Last updated: 2026-11-13
 
 ## How to use this file
 
@@ -178,3 +178,10 @@ Skills are structured knowledge files that give AI coding agents deep context ab
 - TypeScript examples use npm/pnpm + package.json
 - API keys come from https://www.dwellir.com
 - Each repo has its own README with full setup instructions
+
+### RPC Provider Audit
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/rpc-provider-audit
+- Chain: Ethereum mainnet
+- Language: JavaScript, Node.js 22.15 or newer
+- Difficulty: Intermediate
+- What it does: Runs read-only checks from the application region. Reports correctness, archive access, log caps, errors, freshness, latency and WebSocket gaps. Prices a monthly method mix from a sourced pricing file. No dependencies. Offline HTTP and WebSocket fixture tests.
