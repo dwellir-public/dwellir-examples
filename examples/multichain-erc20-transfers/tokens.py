@@ -1,15 +1,26 @@
-"""Token decimals and symbol with eth_call, cached per chain and token."""
+"""Token decimals and symbol with eth_call, cached per chain and token.
+
+Reads at `latest`, so every row shows the token's current decimals and symbol.
+"""
+import time
+
 from rpc import RpcError
+from windows import TRANSIENT
 
 DECIMALS = "0x313ce567"  # decimals()
 SYMBOL = "0x95d89b41"  # symbol()
 
 
-def _eth_call(chain, token, selector):
-    try:
-        return chain.call("eth_call", [{"to": token, "data": selector}, "latest"])
-    except RpcError:
-        return None  # reverted, or no such function
+def _eth_call(chain, token, selector, retries=3):
+    for attempt in range(retries + 1):
+        try:
+            return chain.call("eth_call", [{"to": token, "data": selector}, "latest"])
+        except RpcError as error:
+            if error.code is not None and not TRANSIENT.search(error.message):
+                return None  # reverted, or no such function
+            if attempt == retries:
+                raise  # a timeout or rate limit says nothing about the token: do not cache it
+            time.sleep(2 ** (attempt + 1))
 
 
 def decode_symbol(result):

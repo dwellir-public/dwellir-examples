@@ -6,6 +6,7 @@
 import argparse
 import csv
 import datetime as dt
+import json
 import os
 import time
 from pathlib import Path
@@ -31,11 +32,11 @@ def address_from(topic):
     return "0x" + topic[-40:]
 
 
-def start_block(chain, head, days):
+def start_block(chain, head_block, days):
     """Estimate the block `days` ago from the average block time of the last 1,000 blocks."""
-    newest = chain.block(head)
+    head = int(head_block["number"], 16)
     older = chain.block(head - 1000)
-    seconds_per_block = (int(newest["timestamp"], 16) - int(older["timestamp"], 16)) / 1000
+    seconds_per_block = (int(head_block["timestamp"], 16) - int(older["timestamp"], 16)) / 1000
     return max(0, head - int(days * 86400 / seconds_per_block))
 
 
@@ -73,7 +74,7 @@ def block_time(chain, log, cache):
         if number not in cache:
             cache[number] = chain.block(number)["timestamp"]
         stamp = cache[number]
-    return dt.datetime.fromtimestamp(int(stamp, 16), dt.UTC).strftime("%Y-%m-%d %H:%M:%S")
+    return dt.datetime.fromtimestamp(int(stamp, 16), dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def to_row(chain, item, tokens, finalized, time_cache):
@@ -100,21 +101,40 @@ def to_row(chain, item, tokens, finalized, time_cache):
     }
 
 
-def run_chain(name, address, days, out_dir):
-    started = time.monotonic()
-    chain = Chain(name)
-    head = int(chain.call("eth_blockNumber", []), 16)
-    finalized = int(chain.block("finalized")["number"], 16)
-    first = start_block(chain, head, days)
+def cell(value):
+    """Spreadsheets run a cell that starts with = + - or @ as a formula. Anyone can name a token that way."""
+    if isinstance(value, str) and value.startswith(("=", "+", "-", "@")):
+        return "'" + value
+    return value
+
+
+def scan_to_csv(chain, address, first, head_block, finalized, path, kept=()):
+    """Scan [first, head], write the CSV after the `kept` rows, and record the scan for reorg_check.py."""
+    head = int(head_block["number"], 16)
     items = fetch_transfers(chain, address, first, head)
     tokens, time_cache = TokenCache(chain), {}
-    rows = [to_row(chain, item, tokens, finalized, time_cache) for item in items]
-
-    path = out_dir / f"{name}.csv"
+    rows = list(kept) + [to_row(chain, item, tokens, finalized, time_cache) for item in items]
     with path.open("w", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=FIELDS)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows({key: cell(value) for key, value in row.items()} for row in rows)
+    # A block hash commits to its parent, so the head hash vouches for every block below it,
+    # including blocks that held no transfer.
+    record = {"chain": chain.name, "address": address, "first": first, "head": head,
+              "head_hash": head_block["hash"], "finalized": finalized}
+    path.with_suffix(".scan.json").write_text(json.dumps(record, indent=2) + "\n")
+    return rows, tokens
+
+
+def run_chain(name, address, days, out_dir):
+    started = time.monotonic()
+    chain = Chain(name)
+    head_block = chain.block("latest")
+    finalized = int(chain.block("finalized")["number"], 16)
+    first = start_block(chain, head_block, days)
+    head = int(head_block["number"], 16)
+    path = out_dir / f"{name}.csv"
+    rows, tokens = scan_to_csv(chain, address, first, head_block, finalized, path)
     pending = sum(1 for row in rows if not row["finalized"])
     print(
         f"{name:9s} blocks {first}-{head} ({head - first + 1:,}), "
