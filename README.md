@@ -30,6 +30,8 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid Trade Post-Mortem](./examples/hyperliquid-trade-postmortem) | Hyperliquid | Rebuild a wallet's closed trades from indexed fills, score each against 1s/1m candles (MFE, MAE, stop, target, hold, don't add), replay rules on earlier and later halves | Python | Intermediate |
 | [Hyperliquid Vaults and Leaderboard](./examples/hyperliquid-vaults-leaderboard) | Hyperliquid | Rank vaults by TVL, APR or PnL, inspect one before depositing, rank traders from the leaderboard feed, profile the top ones in one batch call, list a wallet's vault deposits | Python | Beginner |
 
+| [RPC Provider Audit](./examples/rpc-provider-audit) | Ethereum | Check data, archive access, log caps, errors, freshness, latency, WebSocket gaps and workload cost | JavaScript | Intermediate |
+
 ## AI Agent Skills
 
 Structured knowledge files that give AI coding agents (Claude Code, etc.) deep context about blockchain APIs.

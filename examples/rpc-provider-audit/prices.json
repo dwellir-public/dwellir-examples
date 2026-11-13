@@ -1,0 +1,47 @@
+{
+  "currency": "USD",
+  "plans": [
+    {
+      "id": "dwellir-developer",
+      "name": "Dwellir Developer, monthly",
+      "sourceUrl": "https://www.dwellir.com/pricing",
+      "checkedAt": "2026-11-13",
+      "model": "responses",
+      "monthlyUsd": 49,
+      "includedUnits": 25000000,
+      "overageUsdPerMillion": 5,
+      "scope": "Shared HTTP RPC, monthly billing, one response per call; excludes streaming and add-ons"
+    },
+    {
+      "id": "dwellir-growth",
+      "name": "Dwellir Growth, monthly",
+      "sourceUrl": "https://www.dwellir.com/pricing",
+      "checkedAt": "2026-11-13",
+      "model": "responses",
+      "monthlyUsd": 299,
+      "includedUnits": 150000000,
+      "overageUsdPerMillion": 3,
+      "scope": "Shared HTTP RPC, monthly billing, one response per call; excludes streaming and add-ons"
+    },
+    {
+      "id": "dwellir-scale",
+      "name": "Dwellir Scale, monthly",
+      "sourceUrl": "https://www.dwellir.com/pricing",
+      "checkedAt": "2026-11-13",
+      "model": "responses",
+      "monthlyUsd": 999,
+      "includedUnits": 500000000,
+      "overageUsdPerMillion": 2,
+      "scope": "Shared HTTP RPC, monthly billing, one response per call; excludes streaming and add-ons"
+    },
+    {
+      "id": "alchemy-payg",
+      "name": "Alchemy Pay as You Go",
+      "sourceUrl": "https://www.alchemy.com/pricing",
+      "checkedAt": "2026-11-13",
+      "model": "unresolved",
+      "reason": "Official pricing page lists $0.52/M CU; official pricing-plans reference lists $0.525/M CU. Confirm the applicable rate before pricing.",
+      "conflictingSourceUrl": "https://www.alchemy.com/docs/reference/pricing-plans"
+    }
+  ]
+}
