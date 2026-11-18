@@ -3,7 +3,7 @@
 > Curated code examples, demos, and AI agent skills for blockchain development.
 > Organization: dwellir-public (https://github.com/dwellir-public)
 > Website: https://www.dwellir.com
-> Last updated: 2026-10-30
+> Last updated: 2026-11-13
 
 ## How to use this file
 
@@ -14,6 +14,13 @@ To get a Dwellir API key (required by most examples): https://www.dwellir.com
 ---
 
 ## Code Examples
+
+### Ethereum nonce allocator
+- Path: https://github.com/dwellir-public/dwellir-examples/tree/main/examples/ethereum-nonce-allocator
+- Chain: Ethereum mainnet
+- Language: JavaScript
+- Difficulty: Intermediate
+- What it does: Read Dwellir nonce counts and reconcile saved reservations with pool rules and a finalized receipt checkpoint. Includes offline fixtures. Never signs or submits transactions.
 
 ### gRPC Code Examples
 - Repo: https://github.com/dwellir-public/gRPC-code-examples
