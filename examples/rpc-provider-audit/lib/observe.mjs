@@ -77,6 +77,7 @@ function receiveSubscription(state, message) {
 function receiveHeader(state, message) {
   if (
     !state.subscribed ||
+    message.jsonrpc !== '2.0' ||
     message.method !== 'eth_subscription' ||
     message.params?.subscription !== state.subscription
   ) {
@@ -214,8 +215,9 @@ async function sampleHead(client, row, history) {
     return null;
   }
   const previous = history.at(-1);
-  if (previous && height < previous.height) row.backwards++;
   const sample = { height, hash: block.value.hash.toLowerCase(), at: performance.now() };
+  if (previous && height < previous.height) row.backwards++;
+  if (previous?.height === height && previous.hash !== sample.hash) row.sameHeightConflicts++;
   history.push(sample);
   row.samples++;
   return sample;

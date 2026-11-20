@@ -165,6 +165,7 @@ test('pricing adds subscription and overage; unknown methods never receive guess
   for (const invalid of [
     { ...plan, sourceUrl: '' },
     { ...plan, checkedAt: '' },
+    { ...plan, checkedAt: '2026-02-31' },
     { ...plan, monthlyUsd: -1 },
     { ...weighted, weights: null },
   ]) {

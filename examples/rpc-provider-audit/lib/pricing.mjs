@@ -1,12 +1,16 @@
 const nonnegative = (n) => Number.isFinite(n) && n >= 0;
 const sourceValid = (source) => typeof source === 'string' && source.startsWith('https://');
+const calendarDate = (day) => {
+  const parsed = new Date(`${day}T00:00:00Z`);
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === day;
+};
 const cents = (value) => Math.round((value + Number.EPSILON) * 100) / 100;
 
 function validatePlan(plan) {
   if (
     !sourceValid(plan.sourceUrl) ||
     !/^\d{4}-\d{2}-\d{2}$/.test(plan.checkedAt) ||
-    !Number.isFinite(Date.parse(plan.checkedAt))
+    !calendarDate(plan.checkedAt)
   )
     throw new Error('Each price needs a source URL and checkedAt date');
   if (plan.model === 'unresolved') {
