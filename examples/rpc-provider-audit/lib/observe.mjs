@@ -217,7 +217,7 @@ async function sampleHead(client, row, history) {
   const previous = history.at(-1);
   const sample = { height, hash: block.value.hash.toLowerCase(), at: performance.now() };
   if (previous && height < previous.height) row.backwards++;
-  if (previous?.height === height && previous.hash !== sample.hash) row.sameHeightConflicts++;
+  sample.changed = previous?.height === height && previous.hash !== sample.hash;
   history.push(sample);
   row.samples++;
   return sample;
@@ -256,7 +256,10 @@ export async function observe(clients, settings) {
           row.maxRelativeLag ?? 0,
           ...seen.map((other) => other.height - sample.height),
         );
-        if (seen.some((other) => other.height === sample.height && other.hash !== sample.hash))
+        if (
+          sample.changed ||
+          seen.some((other) => other.height === sample.height && other.hash !== sample.hash)
+        )
           row.sameHeightConflicts++;
       }
       round++;
