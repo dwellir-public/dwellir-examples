@@ -296,6 +296,30 @@
       "updated": "2026-11-05"
     },
     {
+      "name": "RPC Provider Audit",
+      "repo": "dwellir-examples",
+      "path": "examples/rpc-provider-audit",
+      "url": "https://github.com/dwellir-public/dwellir-examples/tree/main/examples/rpc-provider-audit",
+      "category": "code-examples",
+      "description": "Dependency-free Node audit for Ethereum RPC correctness, archive access, log caps, errors, freshness, latency, WebSocket gaps and sourced workload pricing. Includes offline HTTP and WebSocket fixtures.",
+      "chains": [
+        "ethereum"
+      ],
+      "features": [
+        "JSON-RPC",
+        "benchmarking",
+        "archive",
+        "eth_getLogs",
+        "WebSocket",
+        "pricing"
+      ],
+      "language": "JavaScript",
+      "difficulty": "intermediate",
+      "status": "active",
+      "created": "2026-11-13",
+      "updated": "2026-11-13"
+    },
+    {
       "name": "Multichain ERC-20 Transfers",
       "repo": "dwellir-examples",
       "path": "examples/multichain-erc20-transfers",

@@ -1,0 +1,68 @@
+{
+  "endpoints": [
+    {
+      "name": "dwellir",
+      "http": "https://api-ethereum-mainnet.n.dwellir.com/${DWELLIR_API_KEY}",
+      "ws": "wss://api-ethereum-mainnet.n.dwellir.com/${DWELLIR_API_KEY}",
+      "priceId": "dwellir-developer"
+    },
+    {
+      "name": "alchemy",
+      "http": "https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
+      "ws": "wss://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
+      "priceId": "alchemy-payg"
+    }
+  ],
+  "probe": {
+    "chainId": "0x1",
+    "block": 15537394,
+    "blockHash": "0x56a9bb0302da44b8c0b3df540781424684c3af04d0b7a38d72842b762076a664",
+    "account": "0x756F45E3FA69347A9A973A725E3C98bC4db0b5a0",
+    "contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "callData": "0x18160ddd",
+    "archiveBlocks": [
+      15537394,
+      20000000
+    ],
+    "logEnd": 20000000,
+    "logFilters": [
+      {
+        "name": "sparse",
+        "address": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+        "widths": [
+          1,
+          100,
+          500,
+          501
+        ]
+      },
+      {
+        "name": "dense",
+        "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        ],
+        "widths": [
+          1,
+          10,
+          100,
+          500
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "gapMs": 500,
+    "timeoutMs": 15000,
+    "maxBytes": 8388608,
+    "latencyRounds": 5,
+    "coldRounds": 3,
+    "observationSeconds": 60,
+    "pollMs": 15000,
+    "graceMs": 2000
+  },
+  "monthlyCalls": {
+    "eth_blockNumber": 2000000,
+    "eth_call": 8000000
+  }
+}

@@ -31,6 +31,7 @@ Production-ready examples showing how to use Dwellir's infrastructure APIs.
 | [Hyperliquid Vaults and Leaderboard](./examples/hyperliquid-vaults-leaderboard) | Hyperliquid | Rank vaults by TVL, APR or PnL, inspect one before depositing, rank traders from the leaderboard feed, profile the top ones in one batch call, list a wallet's vault deposits | Python | Beginner |
 | [Multichain ERC-20 Transfers](./examples/multichain-erc20-transfers) | Ethereum, Base, Arbitrum, Polygon | One address's ERC-20 transfers from plain `eth_getLogs`, both directions merged, exact amounts via `eth_call` decimals, CSV per chain, reorg check, native transfers from traces | Python | Intermediate |
 | [Ethereum nonce allocator](./examples/ethereum-nonce-allocator) | Ethereum | Reconcile nonce reservations with node counts and a finalized receipt checkpoint | JavaScript | Intermediate |
+| [RPC Provider Audit](./examples/rpc-provider-audit) | Ethereum | Check data, archive access, log caps, errors, freshness, latency, WebSocket gaps and workload cost | JavaScript | Intermediate |
 
 ## AI Agent Skills
 
