@@ -1,0 +1,24 @@
+{
+  "source": "Dwellir Ethereum mainnet reads, 2026-11-13. Request IDs refer to the blog claim ledger.",
+  "sender": "0x7d0ebbe6f5308b9ef4e6108247cf793bab98ffcd",
+  "observations": [
+    {
+      "host": "api-ethereum-mainnet-erigon.n.dwellir.com",
+      "latest": "0x6",
+      "latestRequestId": 4,
+      "latestAt": "2026-11-13T08:58:35.298375+00:00",
+      "pending": "0x6",
+      "pendingRequestId": 5,
+      "pendingAt": "2026-11-13T08:58:47.351430+00:00"
+    },
+    {
+      "host": "api-ethereum-mainnet.n.dwellir.com",
+      "latest": "0x6",
+      "latestRequestId": 22,
+      "latestAt": "2026-11-13T08:59:43.866294+00:00",
+      "pending": "0x6",
+      "pendingRequestId": 23,
+      "pendingAt": "2026-11-13T08:59:44.695933+00:00"
+    }
+  ]
+}
